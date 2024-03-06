@@ -9,60 +9,73 @@ import RenderHtml, { HTMLElementModel, HTMLContentModel } from 'react-native-ren
 import asyncStorage from '@react-native-async-storage/async-storage';
 
 import { WebView } from 'react-native-webview';
-import HTMLView from 'react-native-htmlview';
+// import HTMLView from 'react-native-htmlview';
 import { StatusBar } from 'expo-status-bar';
 import { Box, ScrollView } from '@gluestack-ui/themed';
 import { CommonHeader } from '../common/CommonHeader';
 import useAsyncSetting from '../../domain/hooks/setting.hook';
 import { View } from '@gluestack-ui/themed';
 
-// const source = {
-//   html: `
-//     <div class="parentDiv">
-//       <p>para-1</p>
-//       <b>para-2</b>
-//       <p>para-3</p>
-//     </div>
-//   `
-// };
 
-// const customHTMLElementModels = {
-//   'tlo-directive': HTMLElementModel.fromCustomModel({
-//     tagName: 'tlo-directive',
-//     mixedUAStyles: {
-//       // backgroundColor: '#000000',
-//       color: '#ffffff',
-//       paddingLeft: 8,
-//       paddingTop: 8,
-//       paddingBottom: 8,
-//       borderLeftColor: '#e20000',
-//       borderLeftWidth: 4,
-//       borderStyle: 'solid'
-//     },
-//     contentModel: HTMLContentModel.block
-//   }),
-//   'tlo-dropcaps': HTMLElementModel.fromCustomModel({
-//     tagName: 'tlo-dropcaps',
-
-//     mixedUAStyles: {
-//       // backgroundColor: '#000000',
-//       color: '#e20000',
-//       padding: 4,
-//       fontSize: 40,
-//       lineHeight: 40, 
-//       marginTop: 3,
-//       marginRight: 3,
-//       marginBottom: 3      
-//     },
-//     contentModel: HTMLContentModel.textual
-//   })
-// };
+const RED = '#e20000';
 
 export const ContentScreen = (props) => {
   const { width, height } = useWindowDimensions();
   const [ html, setHtml ] = useState(`<div>Se incarca ...<br/><pre>${JSON.stringify(props.route.params, null, 2)}</pre></div>`);
   const [ theme, setTheme ] = useAsyncSetting( 'theme' );  
   const [ fontSize, setFontSize ] = useAsyncSetting( 'fontSize' );  
+  const fontUrl = Platform.select({
+    ios: "Besley-VariableFont_wght.ttf",
+    android: "file:///android_asset/fonts/Besley-VariableFont_wght.ttf",
+  });
+  
+  const style = useMemo(() => {
+    return `<style>
+      @font-face {
+        font-family: 'Besley_400Regular'; 
+        src: local('Besley_400Regular') format('truetype')
+      }
+      html, body {
+        font-size: ${fontSize * 10}px;
+        font-family: 'Besley_400Regular', serif;
+        background-color: ${theme === 'dark' ? '#171717' : '#f5f5f5'};
+        color: ${theme === 'dark' ? '#fff' : '#000'};
+      }
+      s {
+        font-size: 200%;
+        font-weight: 900;
+	      line-height: 1em;
+	      margin-right: 0.3rem;
+	      padding-bottom: 0.1rem;
+	      text-transform: uppercase;
+	      float: left;
+	      position: relative;
+	      top: .4rem;
+	      color: ${RED} !important;
+        text-decoration-line: none;
+      }
+      p {
+        padding-bottom: 8px;
+        text-align: justify;
+      }
+      b {
+        color: ${theme === 'dark' ? '#fff' : '#000'} !important;
+      }
+      i {
+        color: ${RED};
+      }
+      q {
+        color: ${RED};
+        quotes: none;
+        font-weight: bold;
+      }
+      h1, h3 {
+        text-align: center;
+        font-weight: bold;
+        color: ${RED};
+      }
+    </style>`;
+  }, [ theme, fontSize]);
 
   const styles: any = useMemo(() => ({
     container: {
@@ -73,57 +86,57 @@ export const ContentScreen = (props) => {
       height: '100%',
       backgroundColor: theme === 'dark' ? '#171717' : '$backgroundLight100'
     },
-    html: {
-      fontSize: 10 * fontSize
-    },
-    body: {
-      whiteSpace: 'break-spaces',
-      color: theme === 'dark' ? '#FCFCFC' : '$textLight950',
-      paddingLeft: 8,
-      paddingRight: 8,
-      fontFamily: 'Besley_400Regular',
-      fontSize: 10 * fontSize
-    },
-    s: {
-      position: 'absolute',
-      color: '#e20000',
-      // fontSize: '1.25em',
-      // lineHeight: '2em',
-      textDecorationLine: 'none',
-      fontFamily: 'Besley_900Black',
-      fontSize: `${fontSize}`,
-      lineHeight: 15 * fontSize,
-    },
-    i: {
-      color: '#e20000',
-      fontSize: 10 * fontSize
-    },
-    b: {
-      color: (theme === 'dark' ? '#fff' : '#000'),
-      fontFamily: 'Besley_700Bold'
-    },
-    q: {
-      color: '#e20000'
-    },
-    h1: {
-      textAlign: 'center',
-      color: '#e20000',
-      fontFamily: 'Besley_700Bold',
-      fontSize: `${fontSize}.5em`
-    },
-    h3: {
-      textAlign: 'center',
-      color: '#e20000',
-      fontFamily: 'Besley_700Bold',
-      fontSize: `${fontSize}.2em`,
-    },
-    p: {
-      fontSize: 10 * fontSize,
-      lineHeight: 12 * fontSize,
-      paddingBottom: 8,
-      minHeight: 20,
-      textAlign: 'justify'
-    }
+    // html: {
+    //   fontSize: 10 * fontSize
+    // },
+    // body: {
+    //   whiteSpace: 'break-spaces',
+    //   color: theme === 'dark' ? '#FCFCFC' : '$textLight950',
+    //   paddingLeft: 8,
+    //   paddingRight: 8,
+    //   fontFamily: 'Besley_400Regular',
+    //   fontSize: 10 * fontSize
+    // },
+    // s: {
+    //   position: 'absolute',
+    //   color: '#e20000',
+    //   // fontSize: '1.25em',
+    //   // lineHeight: '2em',
+    //   textDecorationLine: 'none',
+    //   fontFamily: 'Besley_900Black',
+    //   fontSize: `${fontSize}`,
+    //   lineHeight: 15 * fontSize,
+    // },
+    // i: {
+    //   color: '#e20000',
+    //   fontSize: 10 * fontSize
+    // },
+    // b: {
+    //   color: (theme === 'dark' ? '#fff' : '#000'),
+    //   fontFamily: 'Besley_700Bold'
+    // },
+    // q: {
+    //   color: '#e20000'
+    // },
+    // h1: {
+    //   textAlign: 'center',
+    //   color: '#e20000',
+    //   fontFamily: 'Besley_700Bold',
+    //   fontSize: `${fontSize}.5em`
+    // },
+    // h3: {
+    //   textAlign: 'center',
+    //   color: '#e20000',
+    //   fontFamily: 'Besley_700Bold',
+    //   fontSize: `${fontSize}.2em`,
+    // },
+    // p: {
+    //   fontSize: 10 * fontSize,
+    //   lineHeight: 12 * fontSize,
+    //   paddingBottom: 8,
+    //   minHeight: 20,
+    //   textAlign: 'justify'
+    // }
   }), [ theme, fontSize ]);
 
   useEffect(() => {
@@ -151,7 +164,7 @@ export const ContentScreen = (props) => {
       contentInsetAdjustmentBehavior="automatic"
     >
 
-      <RenderHtml
+      {/* <RenderHtml
         systemFonts={[
           'Besley_400Regular',
           'Besley_500Medium',
@@ -167,11 +180,10 @@ export const ContentScreen = (props) => {
             </head>
             <body>${html}</body></html>`
         }}
-        // customHTMLElementModels={customHTMLElementModels}
         tagsStyles={styles}
-      />
+      /> */}
 
-      {/* <WebView
+      <WebView
         source={{ 
           html: `<!doctype html>
           <html>
@@ -187,16 +199,16 @@ export const ContentScreen = (props) => {
         }}
         style={{
           width,
-          height
+          height: height - 25
         }}
         originWhitelist={["*"]}
-      /> */}
+      />
 
       {/* <HTMLView
         value={`<body>
         ${html}
         </bod>`}
-        // stylesheet={styles}
+        stylesheet={styles}
       /> */}
     </ScrollView>
     </View>
