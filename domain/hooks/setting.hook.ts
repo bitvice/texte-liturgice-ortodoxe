@@ -18,6 +18,13 @@ const SETTINGS_KEY = "@tloSettings";
       onToggle: (x) => {
         // setColorMode(x);
       }
+    },
+    fontSize: {
+      id: 'fontSize',
+      type: 'select',
+      title: 'Theme',
+      description: 'Theme used in content rendering',
+      value: '1'
     }
   };
 
@@ -29,13 +36,14 @@ const useAsyncSetting = ( key: string ) => {
     await asyncSetting.setItem( JSON.stringify({
       value: newValue
     }));
+    console.log('11----->', `${SETTINGS_KEY}.${key}`, newValue);
     setData( newValue );
   }, [ data ]);
   
   useEffect(() => {
     const prepare = async() => {
       const rawSetting = await asyncSetting.getItem();
-
+console.log('00-----', `${SETTINGS_KEY}.${key}`, rawSetting);
       if (isNil(rawSetting)) {
         return DEFAULT_SETTINGS[key].value;
       }

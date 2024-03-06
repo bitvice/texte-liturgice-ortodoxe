@@ -5,12 +5,28 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from 'react';
 import { preparePages } from './domain/helpers/pages.helper';
 import asyncStorage from '@react-native-async-storage/async-storage';
+import * as besleyExpoFont from '@expo-google-fonts/besley';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
 function App() {
-  const [appIsReady, setAppIsReady] = useState(false);
+
+  const {
+    Besley_400Regular,
+    Besley_500Medium,
+    Besley_700Bold,
+    Besley_900Black
+  } = besleyExpoFont;
+
+  let [besleyLoaded] = besleyExpoFont.useFonts({
+    Besley_400Regular,
+    Besley_500Medium,
+    Besley_700Bold,
+    Besley_900Black
+  });   
+
+ const [appIsReady, setAppIsReady] = useState( false );
 
   useEffect(() => {
     async function prepare() {
@@ -22,7 +38,7 @@ function App() {
         console.log('[App] prepare slujbe ... ');
         await preparePages( 'slujbe', 3 );
 
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 2));
       } catch (e) {
         console.warn(e);
       } finally {
@@ -30,21 +46,22 @@ function App() {
         // Tell the application to render
         setAppIsReady(true);
       }
+
     }
 
+    SplashScreen.hideAsync();
     prepare();
   }, []);  
 
-  useEffect(() => {
-    setAppIsReady(true);
+  // useEffect(() => {
+    // setAppIsReady(true);
     // if (!appIsReady) {
     //   return;
     // }
 
-    SplashScreen.hideAsync();
-  }, [appIsReady])
+  // }, [appIsReady])
 
-  if (!appIsReady) {
+  if (!appIsReady || !besleyLoaded) {
     return (
       <GluestackUIProvider config={config}>
         <VStack
@@ -53,10 +70,9 @@ function App() {
           alignContent="center"
           justifyContent="center"
           space="3xl"
-          backgroundColor='$primary900'
+          backgroundColor='$backgroundDark950'
           >
           <Text
-            fontWeight='bold'
             color="$primary200"
           >Texte Liturgice Ortodoxe</Text>
           <Spinner size="large" color="$primary200" />

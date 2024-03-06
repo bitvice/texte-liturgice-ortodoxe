@@ -22,14 +22,25 @@ export const HomeCard: FC<IHomeCardProps> = ({
   const [ netStatus, setNetStatus] = useState<any>( false);
   
   return (
-    <Box bg="$blue400" style={{
-      flex: width > height ? 1 : 1 / 3,
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: 9,
-      width: '100%',
-      borderRadius: 16
-          }} >
+    <Box 
+      style={{
+        flex: width > height ? 1 : 1/3,
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 9,
+        width: '100%',
+        borderRadius: 16
+      }} >
+            <Pressable 
+              style={{
+                width: '100%',
+                flex: 1,
+                justifyContent: 'center',
+                borderRadius: 16,
+              }}
+              onPress={() => {
+              navigation.navigate( data.screen , data)  
+            }}>
             <ImageBackground 
               id='RP' 
               source={bg} 
@@ -41,16 +52,12 @@ export const HomeCard: FC<IHomeCardProps> = ({
               }} 
               imageStyle={{ borderRadius: 16}}
             >
-              <Pressable onPress={() => {
-                navigation.navigate( data.screen , data)  
-              }}>
               <Text 
                 color="$white" 
-                lineHeight={30} 
+                lineHeight={60} 
                 fontSize={30} 
-                fontWeight="$extraBlack"
                 opacity={.7}
-                fontFamily="serif" 
+                fontFamily="Besley_900Black" 
                 textAlign="center"
                 textShadowOffset={{
                   width: 1,
@@ -61,8 +68,8 @@ export const HomeCard: FC<IHomeCardProps> = ({
               >
                 {data.title}
               </Text>            
-        </Pressable> 
             </ImageBackground>            
+        </Pressable> 
           </Box>
   )
 }

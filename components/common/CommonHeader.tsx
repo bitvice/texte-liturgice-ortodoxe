@@ -8,38 +8,40 @@ import {
 } from '@gluestack-ui/themed';
 import { StackNavigationProp } from '@react-navigation/stack';
 import useAsyncSetting from "../../domain/hooks/setting.hook";
+import { Text } from "@gluestack-ui/themed";
+import { isEmpty } from "lodash";
 
 interface ICommonTitleProps {
   title: string;
   navigation: StackNavigationProp<any>
   backLink?: string;
   hideBack?: boolean;
+  currentScreen?: string;
 }
 export const CommonHeader: FC<ICommonTitleProps> = ({
   title, 
   navigation,
   backLink,
-  hideBack
+  hideBack,
+  currentScreen
 }) => {
   const [ tloTheme ] = useAsyncSetting( 'theme' );
   const bgColor = useMemo(() => (
     tloTheme === 'dark' 
-      ? '$primary900'
-      : tloTheme === 'light'
-        ? '$primary200'
-        : '$primary50'
+      ? '$backgroundDark950'
+      : '$backgroundLight100'
   ), [tloTheme]);
   const color = useMemo(() => (
     tloTheme === 'dark' 
-      ? '$primary200'
-      : '$primary800'
+    ? '$textLight0'
+    : '$textDark950'
   ), [tloTheme]);
 
   return (
     <HStack
       alignItems="center"
       justifyContent="space-between"
-      pt={10}
+      pt={30}
       pb={5}
       pl={10}
       pr={10}
@@ -49,20 +51,30 @@ export const CommonHeader: FC<ICommonTitleProps> = ({
       {!hideBack && (
 
         <Pressable
-        onPress={() => navigation.navigate( backLink ? backLink : 'home', { n: Math.random()})}
+        onPress={() => {
+          console.log(navigation.getState());
+          const currentRoutes = navigation.getState().routes;
+          const backRoute = currentRoutes[currentRoutes.length - 2];
+          console.log(backRoute);
+          navigation.navigate(backRoute.name, {n: Math.random()})
+        }}
         >
           <ChevronLeftIcon color={color} />
         </Pressable>
       )}
 
-      <Heading 
-          color={color}
-          >
-        {title}
-      </Heading>
+      <Text 
+        color={color}
+        fontFamily="Besley_700Bold"
+        fontSize={16}
+      >
+        {isEmpty(title) ? ' ' : title}
+      </Text>
 
       <Pressable
-      onPress={() => navigation.navigate( 'settings')}
+      onPress={() => navigation.navigate( 'settings', {
+        backLink: currentScreen ? currentScreen : 'home'
+      })}
       >
         <SettingsIcon color={color} />
       </Pressable>    

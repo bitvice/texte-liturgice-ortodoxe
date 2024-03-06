@@ -8,7 +8,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { isEmpty, isNil } from "lodash";
 import { HStack, Select, Spinner, Switch, View, useColorMode } from '@gluestack-ui/themed';
 import { Text } from '@gluestack-ui/themed';
-import { FlatList } from '@gluestack-ui/themed';
+import { Card } from '@gluestack-ui/themed';
 import { Box } from '@gluestack-ui/themed';
 import { ChevronDownIcon } from '@gluestack-ui/themed';
 import { SelectTrigger } from '@gluestack-ui/themed';
@@ -32,7 +32,13 @@ const themeOptions: Record<string, string> = {
 
 export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp<any> }) => {
   const [ tloTheme, setTloTheme ] = useAsyncSetting( 'theme' );
+  const [ fontSize, setFontSize ] = useAsyncSetting( 'fontSize' );
 
+  const cardBg = useMemo(() => (
+    tloTheme === 'dark' 
+    ? '$backgroundDark900'
+    : '$backgroundLight0'
+  ), [ tloTheme ])  
   const color = useMemo(() => (
     tloTheme === 'dark' 
       ? '$primary200'
@@ -43,48 +49,97 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
     <CommonView>
       <CommonHeader title='Setări' navigation={navigation} />
 
-      <Box mx={10} my={2}>
-        <HStack alignItems="center" justifyContent="space-between">
-          <Text color={color}>
+      <Card
+        backgroundColor={cardBg}
+        borderRadius={20}
+        m={10}
+        p={20}
+      >
+      <Box mb={40}>
+        <HStack 
+          alignItems="center" 
+          justifyContent="space-between"
+        >
+          <Text 
+            color={color}
+            fontFamily="Besley_400Normal"
+          >
             Tema de culoare
           </Text>
 
-          <Select
-            defaultValue={tloTheme}
-            selectedValue={tloTheme} 
-            onValueChange={(newValue) => setTloTheme(newValue)}
-            borderColor='$primary700'
-            width={160}
+          <HStack 
+            alignItems="center" 
+            justifyContent="flex-end"
+            space="md"
           >
-            <SelectTrigger variant="outline" size="sm">
-              <SelectInput 
-                value={themeOptions[tloTheme]} 
-                placeholder="Tema"
-                color={
-                  tloTheme === 'dark'
-                    ? '$primary200'
-                    : '$primary800'
-                }
-              />
-              <SelectIcon mr="$3">
-                <Icon as={ChevronDownIcon} color={color} />
-              </SelectIcon>
-            </SelectTrigger>
-            <SelectPortal>
-              <SelectBackdrop />
-              <SelectContent>
-                <SelectDragIndicatorWrapper>
-                  <SelectDragIndicator />
-                </SelectDragIndicatorWrapper>
-                {Object.keys(themeOptions).map(key => (
-                  <SelectItem key={key} label={themeOptions[key]} value={key} />
-                ))}
-              </SelectContent>
-            </SelectPortal>
-          </Select>
+            <Text 
+              color={color}
+              fontFamily="Besley_400Normal"
+            >
+              Deschis
+            </Text>
+
+            <Switch 
+              size="md"
+              value={tloTheme === 'dark'}
+              onToggle={() => {
+                setTloTheme(tloTheme === 'light' ? 'dark' : 'light');
+              }}
+            />
+
+            <Text 
+              color={color}
+              fontFamily="Besley_400Normal"
+            >
+              Închis
+            </Text>            
+          </HStack>
+
         </HStack>
       </Box>
+      <Box>
+        <HStack 
+          alignItems="center" 
+          justifyContent="space-between"
+        >
+          <Text 
+            color={color}
+            fontFamily="Besley_400Normal"
+          >
+            Mărimea fontului
+          </Text>
 
+          <HStack 
+            alignItems="center" 
+            justifyContent="flex-end"
+            space="md"
+          >
+            <Text 
+              color={color}
+              fontFamily="Besley_400Normal"
+            >
+              mic
+            </Text>
+
+            <Switch 
+              size="md"
+              value={fontSize === '2'}
+              onToggle={() => {
+                setFontSize(fontSize === '1' ? '2' : '1');
+              }}
+            />
+
+            <Text 
+              color={color}
+              fontFamily="Besley_400Normal"
+            >
+              mare
+            </Text>            
+          </HStack>
+
+        </HStack>
+      </Box>
+      </Card>
       <StatusBar style="auto" />
     </CommonView>      
   );

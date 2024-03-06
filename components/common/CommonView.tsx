@@ -6,15 +6,13 @@ export const CommonView: FC<PropsWithChildren> = ({children}) => {
   const [ tloTheme ] = useAsyncSetting( 'theme' );
   const bgColor = useMemo(() => (
     tloTheme === 'dark' 
-      ? '$primary900'
-      : tloTheme === 'light'
-        ? '$primary200'
-        : '$primary50'
+      ? '$backgroundDark950'
+      : '$backgroundLight100'
   ), [tloTheme]);
   const color = useMemo(() => (
     tloTheme === 'dark' 
-      ? '$primary200'
-      : '$primary800'
+    ? '$textLight0'
+    : '$textDark950'
   ), [tloTheme]);
 
   return (
