@@ -39,8 +39,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "9561eae9-8cf4-4816-bec7-ee960e528540"
+        "projectId": "c8f7f36d-d943-4d31-ad4e-d3545e7c954e"
       }
-    }
+    },
+    "owner": "gbalasz"
   }
 }
