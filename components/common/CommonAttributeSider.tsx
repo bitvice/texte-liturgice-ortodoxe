@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box, HStack, Text } from 'native-base';
+import { Box, HStack, Text } from '@gluestack-ui/themed';
 import Slider from '@react-native-community/slider';
 
 interface ICommonAttributeSliderProps {
@@ -40,8 +40,8 @@ export const CommonAttributeSlider: FC<ICommonAttributeSliderProps> = ({
           minimumValue={min}
           maximumValue={max}
           upperLimit={max}
-          thumbTintColor="#0ac072"
-          minimumTrackTintColor="#0ac072"
+          thumbTintColor="#b70c00"
+          minimumTrackTintColor="#b70c00"
           maximumTrackTintColor="#555555"
           value={value}
           step={step}

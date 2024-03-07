@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { CommonHeader } from '../common/CommonHeader';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-// import type { StorageManager } from "native-base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { isEmpty, isNil } from "lodash";
@@ -10,19 +9,9 @@ import { HStack, Select, Spinner, Switch, View, useColorMode } from '@gluestack-
 import { Text } from '@gluestack-ui/themed';
 import { Card } from '@gluestack-ui/themed';
 import { Box } from '@gluestack-ui/themed';
-import { ChevronDownIcon } from '@gluestack-ui/themed';
-import { SelectTrigger } from '@gluestack-ui/themed';
-import { SelectInput } from '@gluestack-ui/themed';
-import { SelectIcon } from '@gluestack-ui/themed';
-import { Icon } from '@gluestack-ui/themed';
-import { SelectPortal } from '@gluestack-ui/themed';
-import { SelectBackdrop } from '@gluestack-ui/themed';
-import { SelectContent } from '@gluestack-ui/themed';
-import { SelectDragIndicatorWrapper } from '@gluestack-ui/themed';
-import { SelectDragIndicator } from '@gluestack-ui/themed';
-import { SelectItem } from '@gluestack-ui/themed';
 import useAsyncSetting from '../../domain/hooks/setting.hook';
 import { CommonView } from '../common/CommonView';
+import { CommonAttributeSlider } from '../common/CommonAttributeSider';
 
 const themeOptions: Record<string, string> = {
   dark: "Inchis",
@@ -138,6 +127,20 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
           </HStack>
 
         </HStack>
+
+        {/* <CommonAttributeSlider 
+          value={parseInt(fontSize)}
+          min={10}
+          max={20}
+          step={2}
+          label="Mărimea fontului"
+          unit="pixeli"
+          onChange={(newFontSize) => {
+            console.log('update font size',newFontSize);
+            setFontSize(newFontSize.toString());
+          }}
+        />
+        {fontSize} */}
       </Box>
       </Card>
       <StatusBar style="auto" />

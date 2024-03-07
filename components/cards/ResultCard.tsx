@@ -1,5 +1,5 @@
 import { isEmpty, isNil } from "lodash";
-import { Box, Card, HStack, Text, VStack, useColorMode } from "native-base"
+import { Box, Card, HStack, Text, VStack, useColorMode } from "@gluestack-ui/themed"
 import { FC } from "react";
 
 interface IResultCardProps {
@@ -31,7 +31,7 @@ export const ResultCard: FC<IResultCardProps> = ({
         ? 'primary.100' 
         : 'primary.900'
       : color
-    } rounded={8} shadow={4}>
+    } rounded={8} boxShadow={4}>
       <HStack alignItems="center" justifyContent="space-between" mx={3} width="100%" >
         <VStack>
           <Text fontSize="lg" fontWeight="black">{title}</Text>

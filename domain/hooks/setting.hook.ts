@@ -36,14 +36,18 @@ const useAsyncSetting = ( key: string ) => {
     await asyncSetting.setItem( JSON.stringify({
       value: newValue
     }));
-    console.log('11----->', `${SETTINGS_KEY}.${key}`, newValue);
+
+    // console.log('11----->', `${SETTINGS_KEY}.${key}`, newValue);
+
     setData( newValue );
   }, [ data ]);
   
   useEffect(() => {
     const prepare = async() => {
       const rawSetting = await asyncSetting.getItem();
-console.log('00-----', `${SETTINGS_KEY}.${key}`, rawSetting);
+
+      // console.log('00-----', `${SETTINGS_KEY}.${key}`, rawSetting);
+
       if (isNil(rawSetting)) {
         return DEFAULT_SETTINGS[key].value;
       }

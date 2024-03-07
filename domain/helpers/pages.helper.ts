@@ -90,7 +90,7 @@ export const preparePages = async (category: string, categoryId: number) => {
     }
 
     const all = await asyncStorage.getAllKeys();
-    console.log('ALL KEYS', all);
+    // console.log('ALL KEYS', all);
   } catch (e) {
     console.warn(e);
   } 
@@ -100,7 +100,7 @@ export const getPageChildren = async ( category: string, parentId: number ) => {
   const rawStructure = await asyncStorage.getItem(`${category}_pages_struct`);
   const pagesStruct: Record<string, TStructItem[]> = isEmpty(rawStructure) ? {} : JSON.parse(rawStructure);
 
-  console.log(category, 'pageStruct', pagesStruct);
+  // console.log(category, 'pageStruct', pagesStruct);
 
   if (isEmpty(pagesStruct[ parentId ])) {
     return;

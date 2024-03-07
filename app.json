@@ -1,11 +1,11 @@
 {
   "expo": {
     "name": "Texte Liturgice Ortodoxe",
-    "slug": "tlo3",
-    "version": "3.0.0",
+    "slug": "texte-liturgice-ortodoxe",
+    "version": "3.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
@@ -32,7 +32,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000000"
       },
-      "package": "ro.bitvice.texteliturgice"
+      "package": "net.teologie.texteliturgiceortodoxe"
     },
     "web": {
       "favicon": "./assets/favicon.png"
