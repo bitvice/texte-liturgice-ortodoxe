@@ -22,6 +22,7 @@ const themeOptions: Record<string, string> = {
 export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp<any> }) => {
   const [ tloTheme, setTloTheme ] = useAsyncSetting( 'theme' );
   const [ fontSize, setFontSize ] = useAsyncSetting( 'fontSize' );
+  const [ fontStyle, setFontStyle ] = useAsyncSetting( 'fontStyle' );
 
   const cardBg = useMemo(() => (
     tloTheme === 'dark' 
@@ -30,8 +31,8 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
   ), [ tloTheme ])  
   const color = useMemo(() => (
     tloTheme === 'dark' 
-      ? '$primary200'
-      : '$primary800'
+      ? '$backgroundDark100'
+      : '$backgroundLight800'
   ), [tloTheme]);
 
   return (
@@ -65,11 +66,11 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
               color={color}
               fontFamily="Besley_400Normal"
             >
-              Deschis
+              deschis
             </Text>
 
-            <Switch 
-              size="md"
+            <Switch
+              size="lg"
               value={tloTheme === 'dark'}
               onToggle={() => {
                 setTloTheme(tloTheme === 'light' ? 'dark' : 'light');
@@ -80,7 +81,7 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
               color={color}
               fontFamily="Besley_400Normal"
             >
-              Închis
+              închis
             </Text>            
           </HStack>
 
@@ -111,7 +112,7 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
             </Text>
 
             <Switch 
-              size="md"
+              size="lg"
               value={fontSize === '2'}
               onToggle={() => {
                 setFontSize(fontSize === '1' ? '2' : '1');
@@ -128,19 +129,49 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
 
         </HStack>
 
-        {/* <CommonAttributeSlider 
-          value={parseInt(fontSize)}
-          min={10}
-          max={20}
-          step={2}
-          label="Mărimea fontului"
-          unit="pixeli"
-          onChange={(newFontSize) => {
-            console.log('update font size',newFontSize);
-            setFontSize(newFontSize.toString());
-          }}
-        />
-        {fontSize} */}
+      </Box>
+      <Box>
+        <HStack 
+          alignItems="center" 
+          justifyContent="space-between"
+        >
+          <Text 
+            color={color}
+            fontFamily="Besley_400Normal"
+          >
+            Font rugaciuni
+          </Text>
+
+          <HStack 
+            alignItems="center" 
+            justifyContent="flex-end"
+            space="md"
+          >
+            <Text 
+              color={color}
+              fontFamily="Besley_400Normal"
+            >
+              serif
+            </Text>
+
+            <Switch 
+              size="lg"
+              value={fontStyle === '2'}
+              onToggle={() => {
+                setFontSize(fontStyle === 'serif' ? 'sans-serif' : 'serif');
+              }}
+            />
+
+            <Text 
+              color={color}
+              fontFamily="Besley_400Normal"
+            >
+              sans-serif
+            </Text>            
+          </HStack>
+
+        </HStack>
+
       </Box>
       </Card>
       <StatusBar style="auto" />

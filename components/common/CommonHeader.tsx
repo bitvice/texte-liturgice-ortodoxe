@@ -41,11 +41,11 @@ export const CommonHeader: FC<ICommonTitleProps> = ({
     <HStack
       alignItems="center"
       justifyContent="space-between"
-      pt={30}
-      pb={5}
-      pl={10}
-      pr={10}
-      mb={5}
+      pt={22}
+      pb={0}
+      pl={0}
+      pr={0}
+      mb={0}
       backgroundColor={bgColor}
     >
       {!hideBack && (
@@ -58,8 +58,10 @@ export const CommonHeader: FC<ICommonTitleProps> = ({
           console.log(backRoute);
           navigation.navigate(backRoute.name, {n: Math.random()})
         }}
+        width={48}
+        height={48}
         >
-          <ChevronLeftIcon color={color} />
+          <ChevronLeftIcon color={color} size="xl" mt={12} ml={12} />
         </Pressable>
       )}
 
@@ -71,13 +73,22 @@ export const CommonHeader: FC<ICommonTitleProps> = ({
         {isEmpty(title) ? ' ' : title}
       </Text>
 
-      <Pressable
+      <Text 
+        aria-label="spațiu gol"
+        color={color}
+        width={48}
+        height={48}
+      >
+        {' '}
+      </Text>
+
+      {/* <Pressable
       onPress={() => navigation.navigate( 'settings', {
         backLink: currentScreen ? currentScreen : 'home'
       })}
       >
-        <SettingsIcon color={color} />
-      </Pressable>    
+        <SettingsIcon color={color} size="xl" />
+      </Pressable>     */}
     </HStack>
   );
 }

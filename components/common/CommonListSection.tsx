@@ -1,4 +1,4 @@
-import { Accordion, AccordionHeader, AccordionIcon, AccordionItem, AccordionTrigger, ChevronDownIcon, ChevronRightIcon, HStack, Icon, Pressable, Text, useColorMode } from "@gluestack-ui/themed";
+import { Accordion, AccordionHeader, AccordionIcon, AccordionItem, AccordionTrigger, ChevronDownIcon, ChevronRightIcon, HStack, Icon, Pressable, Text } from "@gluestack-ui/themed";
 import { Box, VStack } from "@gluestack-ui/themed";
 import { StackNavigationProp } from "@react-navigation/stack";
 import useAsyncSetting from "../../domain/hooks/setting.hook";
@@ -9,8 +9,7 @@ import { AccordionContent } from "@gluestack-ui/themed";
 import { Card } from "@gluestack-ui/themed";
 
 export const CommonListSection = ({ item, navigation }: { item: any, navigation: StackNavigationProp<any> }) => {
-  const colorMode = useColorMode();
-  const [ theme, setTheme ] = useAsyncSetting( 'theme' );
+  const [ theme ] = useAsyncSetting( 'theme' );
 
   const cardBg = useMemo(() => (
     theme === 'dark' 
@@ -24,8 +23,8 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
   ), [theme]);  
   const cardColor = useMemo(() => (
     theme === 'dark'
-      ? '$primary300'
-      : '$primary600'
+      ? '$textDark200'
+      : '$textDark800'
   ), [ theme ])
   const cardLinesColor = useMemo(() => (
     theme === 'dark'
@@ -35,7 +34,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
   const btnColor = useMemo(() => (
     theme === 'dark'
       ? '$primary0'
-      : '$primary800'
+      : '$primary700'
   ), [ theme ])
 
   const renderChildren = (data) => {
@@ -54,15 +53,17 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
                   {({ isExpanded }) => {
                     return (
                       <>
-                          <Text
-                            color={cardColor}
-                            fontFamily="Besley_700Bold"
-                          >
+                        <Text
+                          size="sm"
+                          color={cardColor}
+                          fontFamily="Besley_700Bold"
+                        >
                           {child.title}
-                          </Text>
+                        </Text>
                         <AccordionIcon 
                           as={isExpanded ? ChevronUpIcon : ChevronDownIcon} 
-                          ml="$3"  
+                          ml="$3"
+                          size="lg"
                           color={cardColor} 
                         />
                       </>
@@ -103,7 +104,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
                 >
                   <Icon 
                     as={ChevronRightIcon} 
-                    size="md"
+                    size="lg"
                     color={btnColor}
                     minWidth={20}
                   ></Icon>
@@ -130,7 +131,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
     >
       <Text 
         mx="$4"
-        size="lg" 
+        size="md" 
         fontFamily="Besley_700Bold"
         color={color}
         >

@@ -42,10 +42,12 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
       <Text 
         color={color} 
         lineHeight={30} 
-        fontSize={24}
+        fontSize={18}
         fontFamily="Besley_900Black"
       >Texte Liturgice Ortodoxe</Text>
-      <Text color={color} lineHeight={30} fontSize={16} fontFamily="Besley_400Regular">de la Teologie.net</Text>            
+      <Text color={color} lineHeight={30} fontSize={18} fontFamily="Besley_400Regular" mb="$6">de la Teologie.net</Text>            
+      <Text color={color} lineHeight={22} fontSize={18} fontFamily="Besley_400Regular">Cu grija şi binecuvântarea </Text>            
+      <Text color={color} lineHeight={22} fontSize={18}  fontFamily="Besley_700Bold">episcopului Petru Pruteanu</Text>            
     </Box>
   )
 
@@ -53,12 +55,12 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
     <View id="WrapperContainer" style={styles.container}>
       {!isLandscape && (
         <VStack 
-          space="2xl" 
+          space="4xl" 
           reversed={false} 
           style={styles.wrapper} 
           backgroundColor={bgColor}
         >
-          <CommonHeader title='' navigation={navigation} hideBack />
+          {/* <CommonHeader title='' navigation={navigation} hideBack /> */}
           {renderTitleBox()}
 
           {/* <Box
@@ -74,8 +76,9 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
                 borderRadius: 16,
               }}
               onPress={() => {
-              navigation.navigate( 'particulare' , { screen: 'particulare' })  
-            }}>
+                navigation.navigate( 'particulare' , { screen: 'particulare' })  
+              }}
+            >
             <HStack
               justifyContent="space-between"
               alignItems="center"
@@ -119,9 +122,9 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
               </Avatar>
             </HStack>
             </Pressable>            
-          </Box> */}
+          </Box>
 
-          {/* <Box
+          <Box
             backgroundColor={cardBgColor}
             borderRadius={16}
             p={20}
@@ -189,7 +192,7 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
             navigation={navigation}
             data = {{
               screen: 'particulare',
-              title: 'Pentru mireni'
+              title: 'credincioșii laici'
             }}
           />
           <HomeCard 
@@ -197,7 +200,7 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
             navigation={navigation}
             data = {{
               screen: 'bisericesti',
-              title: 'Pentru preoți'
+              title: 'clerici și strană'
             }}
           />
         </VStack>
@@ -221,7 +224,7 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
             navigation={navigation}
             data = {{
               screen: 'particulare',
-              title: 'Pentru mireni'
+              title: 'credincioșii laici'
             }}
             />
           <HomeCard 
@@ -229,7 +232,7 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
             navigation={navigation}
             data = {{
               screen: 'bisericesti',
-              title: 'Pentru preoți'
+              title: 'clerici și strană'
             }}
             />
           </HStack>

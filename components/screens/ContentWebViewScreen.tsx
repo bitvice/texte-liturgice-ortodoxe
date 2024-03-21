@@ -77,7 +77,7 @@ export const ContentScreen = (props) => {
     
     body {
       font-size: 16px;
-      font-family: 'PlayfairDisplay', sans-serif;      
+      font-family: 'PlayfairDisplay';
       background-color: ${theme === 'dark' ? '#000' : '#eaeaea'};
       color: ${theme === 'dark' ? '#eaeaea' : '#333'};
       margin: .5em;
@@ -113,7 +113,6 @@ export const ContentScreen = (props) => {
       background-image: none;
       margin: 0;
       padding: 5% 2% 4em;
-      font-family: serif;
     
       -webkit-box-sizing: border-box;
               box-sizing: border-box;

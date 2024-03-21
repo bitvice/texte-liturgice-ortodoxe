@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from "react";
 import { StackNavigationProp } from '@react-navigation/stack';
 import { IHomeCardData } from "domain/types";
 import { isNil } from "lodash";
-import { Box, ImageBackground, Pressable, useColorMode } from "@gluestack-ui/themed";
+import { Box, ImageBackground, Pressable, VStack, useColorMode } from "@gluestack-ui/themed";
 import { Text } from "@gluestack-ui/themed";
 import { useWindowDimensions } from "react-native";
 
@@ -52,22 +52,40 @@ export const HomeCard: FC<IHomeCardProps> = ({
               }} 
               imageStyle={{ borderRadius: 16}}
             >
-              <Text 
-                color="$white" 
-                lineHeight={60} 
-                fontSize={30} 
-                opacity={.7}
-                fontFamily="Besley_900Black" 
-                textAlign="center"
-                textShadowOffset={{
-                  width: 1,
-                  height: 1
-                }}
-                textShadowRadius={2}
-                textShadowColor="#000000"
-              >
-                {data.title}
-              </Text>            
+              <VStack>
+                <Text 
+                  color="$white" 
+                  lineHeight={60} 
+                  fontSize={26} 
+                  opacity={.7}
+                  fontFamily="Besley_900Black" 
+                  textAlign="center"
+                  textShadowOffset={{
+                    width: 1,
+                    height: 1
+                  }}
+                  textShadowRadius={2}
+                  textShadowColor="#000000"
+                >
+                  Pentru
+                </Text>            
+                <Text 
+                  color="$white" 
+                  lineHeight={60} 
+                  fontSize={26} 
+                  opacity={.7}
+                  fontFamily="Besley_900Black" 
+                  textAlign="center"
+                  textShadowOffset={{
+                    width: 1,
+                    height: 1
+                  }}
+                  textShadowRadius={2}
+                  textShadowColor="#000000"
+                  >
+                    {data.title}
+                </Text>            
+              </VStack>
             </ImageBackground>            
         </Pressable> 
           </Box>
