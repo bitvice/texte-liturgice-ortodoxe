@@ -11,11 +11,17 @@ type TStructItem = {
 
 export const preparePages = async (category: string, categoryId: number) => {
   try {
+    const nowTime = Date.now();
+    const lastUpdate = parseInt( await asyncStorage.getItem(`${category}_last_update`));
+    const daysBetween = Math.floor((nowTime - lastUpdate) / (1000 * 60 * 60 * 24));
+    
+    if (daysBetween < 3) {
+      return;
+    }
+    
     const networkState = await Network.getNetworkStateAsync();
 
     if (!networkState.isConnected || !networkState.isInternetReachable) {
-      const allKeys = await asyncStorage.getAllKeys();
-      console.log('NO NET | ALL KEYS', allKeys);
       return;
     }
 
@@ -29,9 +35,6 @@ export const preparePages = async (category: string, categoryId: number) => {
 
     let hasChanges = false;
 
-    console.log(`Received ${pages.length} pages for ${category.toUpperCase()}`);
-    console.log(pages[0]);
-
     for (const page of pages) {
 
       const parsedModified = Date.parse(page.modified)
@@ -42,18 +45,6 @@ export const preparePages = async (category: string, categoryId: number) => {
         hasChanges = true;
         pagesModifiedDates[ page.id ] = parsedModified;
 
-        console.log('analizyng data for ', page.slug, page.id, ' as localPageModified:', localPageModified, ' | parsedModified:', parsedModified);
-
-        // const pageResponse = await fetch(`https://texteliturgice.bitvice.ro/wp-json/wp/v2/pages/${page.id}`);
-        // const pageData = await pageResponse.json();
-
-        // console.log( 'received data: ', pageData );
-
-        // await asyncStorage.setItem(`page_${page.id}_modified`, pageData.modified);
-        // await asyncStorage.setItem(`page_${page.id}_content`, pageData.content.rendered);
-        // await asyncStorage.setItem(`page_${page.id}_title`, pageData.title.rendered);
-        // await asyncStorage.setItem(`page_${page.id}_parent`, pageData.parent.toString());
-
         await asyncStorage.setItem(`page_${page.id}_data`, JSON.stringify({
           id: page.id,
           title: page.title.rendered,
@@ -61,12 +52,6 @@ export const preparePages = async (category: string, categoryId: number) => {
           parent: page.parent,
           content: page.content.rendered
         }));
-
-
-        // const strParentChildren = await asyncStorage.getItem(`${category}_${page.parent}_children`);
-        // const parentChildren = isEmpty(strParentChildren) 
-        //   ? []
-        //   : JSON.parse(strParentChildren) ;
 
         if (isNil(pagesStruct[ page.parent ])) {
           pagesStruct[ page.parent ] = [];
@@ -79,8 +64,6 @@ export const preparePages = async (category: string, categoryId: number) => {
             title: page.title.rendered
           });
         }
-
-        // await asyncStorage.setItem(`${category}_${page.parent}_children`, JSON.stringify(parentChildren));
       }
     }
 
@@ -89,8 +72,7 @@ export const preparePages = async (category: string, categoryId: number) => {
       await asyncStorage.setItem(`${category}_pages_struct`, JSON.stringify(pagesStruct));      
     }
 
-    const all = await asyncStorage.getAllKeys();
-    // console.log('ALL KEYS', all);
+    asyncStorage.setItem(`${category}_last_update`, nowTime.toString());
   } catch (e) {
     console.warn(e);
   } 

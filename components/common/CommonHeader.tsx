@@ -4,12 +4,14 @@ import {
   Heading,
   Pressable,
   SettingsIcon,
-  ChevronLeftIcon
+  ChevronLeftIcon,
+  SunIcon
 } from '@gluestack-ui/themed';
 import { StackNavigationProp } from '@react-navigation/stack';
 import useAsyncSetting from "../../domain/hooks/setting.hook";
 import { Text } from "@gluestack-ui/themed";
 import { isEmpty } from "lodash";
+import { MoonIcon } from "@gluestack-ui/themed";
 
 interface ICommonTitleProps {
   title: string;
@@ -25,7 +27,7 @@ export const CommonHeader: FC<ICommonTitleProps> = ({
   hideBack,
   currentScreen
 }) => {
-  const [ tloTheme ] = useAsyncSetting( 'theme' );
+  const [ tloTheme, setTloTheme ] = useAsyncSetting( 'theme' );
   const bgColor = useMemo(() => (
     tloTheme === 'dark' 
       ? '$backgroundDark950'
@@ -51,15 +53,15 @@ export const CommonHeader: FC<ICommonTitleProps> = ({
       {!hideBack && (
 
         <Pressable
-        onPress={() => {
-          console.log(navigation.getState());
-          const currentRoutes = navigation.getState().routes;
-          const backRoute = currentRoutes[currentRoutes.length - 2];
-          console.log(backRoute);
-          navigation.navigate(backRoute.name, {n: Math.random()})
-        }}
-        width={48}
-        height={48}
+          onPress={() => {
+            console.log(navigation.getState());
+            const currentRoutes = navigation.getState().routes;
+            const backRoute = currentRoutes[currentRoutes.length - 2];
+            console.log(backRoute);
+            navigation.navigate(backRoute.name, {n: Math.random()})
+          }}
+          width={48}
+          height={48}
         >
           <ChevronLeftIcon color={color} size="xl" mt={12} ml={12} />
         </Pressable>
@@ -73,22 +75,23 @@ export const CommonHeader: FC<ICommonTitleProps> = ({
         {isEmpty(title) ? ' ' : title}
       </Text>
 
-      <Text 
-        aria-label="spațiu gol"
-        color={color}
-        width={48}
-        height={48}
-      >
-        {' '}
-      </Text>
+      <Pressable
+            aria-label="tema"
+            onPress={() => {
+              setTloTheme(tloTheme === 'light' ? 'dark' : 'light');            
 
-      {/* <Pressable
-      onPress={() => navigation.navigate( 'settings', {
-        backLink: currentScreen ? currentScreen : 'home'
-      })}
-      >
-        <SettingsIcon color={color} size="xl" />
-      </Pressable>     */}
+              const currentRoutes = navigation.getState().routes;
+              const route = currentRoutes[currentRoutes.length - 1];
+
+              navigation.navigate(route.name, {n: Math.random()})              
+            }}
+            width={48}
+            height={48}
+          >
+            {tloTheme === 'dark' && <SunIcon color={color} size="xl" mt={12} ml={12} />}
+            {tloTheme === 'light' && <MoonIcon color={color} size="xl" mt={12} ml={12} />}
+          </Pressable>
+
     </HStack>
   );
 }

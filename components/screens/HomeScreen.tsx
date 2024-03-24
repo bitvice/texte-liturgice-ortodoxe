@@ -41,13 +41,13 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
     <Box style={styles.homeContainer} mb={20}>
       <Text 
         color={color} 
-        lineHeight={30} 
-        fontSize={18}
+        lineHeight={20} 
+        fontSize={16}
         fontFamily="Besley_900Black"
       >Texte Liturgice Ortodoxe</Text>
-      <Text color={color} lineHeight={30} fontSize={18} fontFamily="Besley_400Regular" mb="$6">de la Teologie.net</Text>            
-      <Text color={color} lineHeight={22} fontSize={18} fontFamily="Besley_400Regular">Cu grija şi binecuvântarea </Text>            
-      <Text color={color} lineHeight={22} fontSize={18}  fontFamily="Besley_700Bold">episcopului Petru Pruteanu</Text>            
+      <Text color={color} lineHeight={21} fontSize={14} fontFamily="Besley_400Regular" mb="$4">de la teologie.net</Text>            
+      <Text color="$red600" lineHeight={18} fontSize={12} fontFamily="Besley_400Regular">Cu grija şi binecuvântarea </Text>            
+      <Text color="$red600" lineHeight={18} fontSize={12}  fontFamily="Besley_700Bold">episcopului Petru Pruteanu</Text>            
     </Box>
   )
 
@@ -55,12 +55,11 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
     <View id="WrapperContainer" style={styles.container}>
       {!isLandscape && (
         <VStack 
-          space="4xl" 
+          space="xl" 
           reversed={false} 
           style={styles.wrapper} 
           backgroundColor={bgColor}
         >
-          {/* <CommonHeader title='' navigation={navigation} hideBack /> */}
           {renderTitleBox()}
 
           {/* <Box
@@ -87,7 +86,7 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
                 <Text 
                   color="$white" 
                   lineHeight={20} 
-                  fontSize={20} 
+                  fontSize={14} 
                   opacity={.7}
                   fontFamily="Besley_900Black" 
                   textAlign="left"
@@ -98,7 +97,7 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
                   textShadowRadius={2}
                   textShadowColor="#000000"
                   >
-                  Pentru mireni
+                  Pentru credincioșii laici
                 </Text>
                 <Text 
                   color="$white" 
@@ -122,9 +121,9 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
               </Avatar>
             </HStack>
             </Pressable>            
-          </Box>
+          </Box> */}
 
-          <Box
+          {/* <Box
             backgroundColor={cardBgColor}
             borderRadius={16}
             p={20}

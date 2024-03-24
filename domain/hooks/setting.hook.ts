@@ -9,7 +9,7 @@ const SETTINGS_KEY = "@tloSettings";
       type: 'select',
       title: 'Theme',
       description: 'Theme used in content rendering',
-      value: 'dark',
+      value: 'light',
       options: {
         dark: "Inchis",
         light: "Deschis",

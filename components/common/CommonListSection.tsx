@@ -34,7 +34,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
   const btnColor = useMemo(() => (
     theme === 'dark'
       ? '$primary0'
-      : '$primary700'
+      : '$borderLight900'
   ), [ theme ])
 
   const renderChildren = (data) => {
@@ -111,6 +111,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
                   <Text
                     color={btnColor}
                     fontFamily="Besley_700Bold"
+                    fontSize={14}
                   >
                     {child.title}
                   </Text>
@@ -120,10 +121,8 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
           )}
         </Box>
       )
-
     })
   }
-  
   
   return (
     <VStack
@@ -140,7 +139,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
 
       <Card 
           key={item.id} 
-          m={8} 
+          m={16} 
           p={0}
           backgroundColor={cardBg}
         >

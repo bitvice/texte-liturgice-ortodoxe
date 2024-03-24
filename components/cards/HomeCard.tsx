@@ -52,12 +52,16 @@ export const HomeCard: FC<IHomeCardProps> = ({
               }} 
               imageStyle={{ borderRadius: 16}}
             >
-              <VStack>
+              <VStack alignItems="center" justifyContent="flex-end"
+                style={{
+                  height: '100%',
+                }}
+              >
                 <Text 
                   color="$white" 
-                  lineHeight={60} 
-                  fontSize={26} 
-                  opacity={.7}
+                  lineHeight={18}
+                  fontSize={16} 
+                  // opacity={.7}
                   fontFamily="Besley_900Black" 
                   textAlign="center"
                   textShadowOffset={{
@@ -66,24 +70,9 @@ export const HomeCard: FC<IHomeCardProps> = ({
                   }}
                   textShadowRadius={2}
                   textShadowColor="#000000"
-                >
-                  Pentru
-                </Text>            
-                <Text 
-                  color="$white" 
-                  lineHeight={60} 
-                  fontSize={26} 
-                  opacity={.7}
-                  fontFamily="Besley_900Black" 
-                  textAlign="center"
-                  textShadowOffset={{
-                    width: 1,
-                    height: 1
-                  }}
-                  textShadowRadius={2}
-                  textShadowColor="#000000"
+                  mb="$2"
                   >
-                    {data.title}
+                    Pentru {data.title}
                 </Text>            
               </VStack>
             </ImageBackground>            

@@ -27,13 +27,18 @@ function App() {
     Besley_900Black
   });   
 
- const [appIsReady, setAppIsReady] = useState( false );
- const [ tloTheme ] = useAsyncSetting( 'theme' );
- const color = useMemo(() => (
-  tloTheme === 'dark' 
-  ? '$textLight0'
-  : '$textDark950'
-), [ tloTheme ]);
+  const [appIsReady, setAppIsReady] = useState( false );
+  const [ tloTheme ] = useAsyncSetting( 'theme' );
+  const color = useMemo(() => (
+    tloTheme === 'dark' 
+      ? '$textLight0'
+      : '$textDark950'
+  ), [ tloTheme ]);
+  const bgColor = useMemo(() => (
+    tloTheme === 'dark' 
+    ? '$backgroundDark900'
+    : '$backgroundLight0'
+  ), [ tloTheme ])
 
   useEffect(() => {
     async function prepare() {
@@ -64,20 +69,22 @@ function App() {
           alignContent="center"
           justifyContent="center"
           space="4xl"
-          backgroundColor='$backgroundDark950'
-          >
+          backgroundColor={bgColor}
+        >
           <Text
             color={color}          
             fontWeight="bold"
             fontSize="$2xl"
+            lineHeight="$3xl"
           >Texte Liturgice Ortodoxe</Text>
           <Spinner 
-            size={50}
+            size={40}
             color="$primary600" 
           />
           <Text 
             color={color}
             fontSize="$xl"
+            lineHeight="$2xl"
           >Se încarcă rugăciunile ...</Text>
         </VStack>
       </GluestackUIProvider>
