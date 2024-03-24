@@ -33,8 +33,8 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
   ), [ theme ])
   const btnColor = useMemo(() => (
     theme === 'dark'
-      ? '$primary0'
-      : '$borderLight900'
+      ? '#ff9124'
+      : '#e20000'
   ), [ theme ])
 
   const renderChildren = (data) => {
@@ -57,6 +57,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
                           size="sm"
                           color={cardColor}
                           fontFamily="Besley_700Bold"
+                          allowFontScaling={false}
                         >
                           {child.title}
                         </Text>
@@ -101,6 +102,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
                 <HStack
                   space="md"
                   alignItems="flex-start"
+                  pr="$5"
                 >
                   <Icon 
                     as={ChevronRightIcon} 
@@ -112,6 +114,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
                     color={btnColor}
                     fontFamily="Besley_700Bold"
                     fontSize={14}
+                    allowFontScaling={false}
                   >
                     {child.title}
                   </Text>
@@ -133,7 +136,8 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
         size="md" 
         fontFamily="Besley_700Bold"
         color={color}
-        >
+        allowFontScaling={false}
+      >
         {item.title}
       </Text>
 

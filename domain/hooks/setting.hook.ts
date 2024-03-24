@@ -1,6 +1,7 @@
 import { useAsyncStorage } from "@react-native-async-storage/async-storage";
 import { isNil } from "lodash";
 import { useCallback, useEffect, useState } from "react";
+import { Appearance } from "react-native";
 
 const SETTINGS_KEY = "@tloSettings";
   const DEFAULT_SETTINGS = {
@@ -9,7 +10,7 @@ const SETTINGS_KEY = "@tloSettings";
       type: 'select',
       title: 'Theme',
       description: 'Theme used in content rendering',
-      value: 'light',
+      value: Appearance.getColorScheme(),
       options: {
         dark: "Inchis",
         light: "Deschis",
@@ -24,7 +25,14 @@ const SETTINGS_KEY = "@tloSettings";
       type: 'select',
       title: 'Theme',
       description: 'Theme used in content rendering',
-      value: '1'
+      value: '2'
+    },
+    fontStyle: {
+      id: 'fontStyle',
+      type: 'select',
+      title: 'Style',
+      description: 'Text style used in content rendering',
+      value: 'serif'
     }
   };
 
@@ -36,8 +44,6 @@ const useAsyncSetting = ( key: string ) => {
     await asyncSetting.setItem( JSON.stringify({
       value: newValue
     }));
-
-    // console.log('11----->', `${SETTINGS_KEY}.${key}`, newValue);
 
     setData( newValue );
   }, [ data ]);
@@ -53,6 +59,11 @@ const useAsyncSetting = ( key: string ) => {
       }
 
       const setting: any = JSON.parse( rawSetting );
+
+      if (!setting) {
+        return DEFAULT_SETTINGS[key].value;
+      }
+
       setData( setting.value );
     }
     prepare();

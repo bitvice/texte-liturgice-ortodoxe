@@ -53,6 +53,7 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
           <Text 
             color={color}
             fontFamily="Besley_400Normal"
+            allowFontScaling={false}
           >
             Tema de culoare
           </Text>
@@ -65,6 +66,7 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
             <Text 
               color={color}
               fontFamily="Besley_400Normal"
+              allowFontScaling={false}
             >
               deschis
             </Text>
@@ -80,6 +82,7 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
             <Text 
               color={color}
               fontFamily="Besley_400Normal"
+              allowFontScaling={false}
             >
               închis
             </Text>            
@@ -95,6 +98,7 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
           <Text 
             color={color}
             fontFamily="Besley_400Normal"
+            allowFontScaling={false}
           >
             Mărimea fontului
           </Text>
@@ -107,6 +111,7 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
             <Text 
               color={color}
               fontFamily="Besley_400Normal"
+              allowFontScaling={false}
             >
               mic
             </Text>
@@ -122,6 +127,7 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
             <Text 
               color={color}
               fontFamily="Besley_400Normal"
+              allowFontScaling={false}
             >
               mare
             </Text>            
@@ -138,6 +144,7 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
           <Text 
             color={color}
             fontFamily="Besley_400Normal"
+            allowFontScaling={false}
           >
             Font rugaciuni
           </Text>
@@ -150,11 +157,12 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
             <Text 
               color={color}
               fontFamily="Besley_400Normal"
+              allowFontScaling={false}
             >
               serif
             </Text>
 
-            <Switch 
+            <Switch
               size="lg"
               value={fontStyle === '2'}
               onToggle={() => {
@@ -165,6 +173,7 @@ export const SettingsScreen = ({ navigation }: { navigation: StackNavigationProp
             <Text 
               color={color}
               fontFamily="Besley_400Normal"
+              allowFontScaling={false}
             >
               sans-serif
             </Text>            

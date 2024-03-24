@@ -7,7 +7,7 @@ import asyncStorage from '@react-native-async-storage/async-storage';
 
 import { WebView } from 'react-native-webview';
 import { StatusBar } from 'expo-status-bar';
-import { Box, ScrollView } from '@gluestack-ui/themed';
+import { Box, ScrollView, VStack } from '@gluestack-ui/themed';
 import { CommonHeader } from '../common/CommonHeader';
 import useAsyncSetting from '../../domain/hooks/setting.hook';
 import { View } from '@gluestack-ui/themed';
@@ -19,7 +19,6 @@ import { SunIcon } from '@gluestack-ui/themed';
 import { MoonIcon } from '@gluestack-ui/themed';
 import { Text } from '@gluestack-ui/themed';
 
-const RED = '#ff0000';
 
 export const ContentScreen = (props) => {
   const { width, height } = useWindowDimensions();
@@ -35,6 +34,7 @@ export const ContentScreen = (props) => {
     ios: false,
     android: true
   });
+  const RED = useMemo(() => theme === 'dark' ? '#ff9124' : '#e20000', [theme]);
   const fontFamily = useMemo(() => {
     return fontStyle === 'serif' 
       ? isSerif 
@@ -43,20 +43,6 @@ export const ContentScreen = (props) => {
       : '';
   }, [fontStyle, isSerif]);
   
-  // const {
-  //   Besley_400Regular,
-  //   Besley_500Medium,
-  //   Besley_700Bold,
-  //   Besley_900Black
-  // } = besleyExpoFont;
-
-  // let [besleyLoaded] = besleyExpoFont.useFonts({
-  //   Besley_400Regular,
-  //   Besley_500Medium,
-  //   Besley_700Bold,
-  //   Besley_900Black
-  // });
-
   const style = useMemo(() => {
     return `<style>
       @font-face {
@@ -65,16 +51,16 @@ export const ContentScreen = (props) => {
       }
       html, body {
         font-size: ${fontSize === '1' 
-          ? 14
+          ? 12
           : fontSize === '2' 
-            ? 16
-            : 20}px;
+            ? 14
+            : 18}px;
         font-family: ${fontFamily};
         background-color: ${theme === 'dark' ? '#000' : '#f5f5f5'};
         color: ${theme === 'dark' ? '#fff' : '#000'};
       }
       body {
-        padding-top: 30px;
+        padding: 0 5px 0 10px;
       }
       s {
         font-size: 200%;
@@ -129,17 +115,6 @@ export const ContentScreen = (props) => {
     : '$textDark950'
   ), [theme]);
 
-  const styles: any = useMemo(() => ({
-    container: {
-      // flex: 1,
-      // alignItems: 'center',
-      // justifyContent: 'center',
-      flexDirection: 'column',    
-      height: '100%',
-      backgroundColor: theme === 'dark' ? '#171717' : '$backgroundLight100'
-    },
-  }), [ theme, fontSize ]);
-
   const [ pending, setPending ] = useState( false );
 
   useEffect(() => {
@@ -154,18 +129,28 @@ export const ContentScreen = (props) => {
   }, [])
 
   return (
-    <View id="WrapperContainer" style={styles.container}>
-
-      <ScrollView 
-        width="$full"
-        height={height}
-        contentInsetAdjustmentBehavior="automatic"
+    <View 
+      id="WrapperContainer" 
+      width="$full"
+      height="$full"
+      backgroundColor={theme === 'dark' ? '$backgroundDark950' : '$backgroundLight100'}
+    >
+      <VStack
+        height={ height - 25 }
+        marginTop={25}
+        marginLeft={0}
+        marginBottom={25}
+        marginRight={10}
+        justifyContent="space-between"
+        alignItems="center"
       >
-
+        <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
 
         {!pending && (
           <WebView
+            flex={1}
           aria-label="conținutul paginii"
+          textZoom={100}
           source={{ 
             html: `<!doctype html>
             <html>
@@ -182,14 +167,10 @@ export const ContentScreen = (props) => {
           }}
           style={{
             width,
-            height: height - 25
           }}
           originWhitelist={["*"]}
           />
         )}
-
-
-      </ScrollView>
 
       <Box 
         height={50} 
@@ -208,7 +189,6 @@ export const ContentScreen = (props) => {
           <Pressable
             aria-label="înapoi"
             onPress={() => {
-              console.log(props.navigation.getState());
               const currentRoutes = props.navigation.getState().routes;
               const backRoute = currentRoutes[currentRoutes.length - 2];
               props.navigation.navigate(backRoute.name, {n: Math.random()})
@@ -216,7 +196,7 @@ export const ContentScreen = (props) => {
             width={48}
             height={48}
           >
-            <ChevronLeftIcon color={color} size="xl" mt={12} ml={12}  />
+            <ChevronLeftIcon color={color} size="xl" mt={10} ml={12}  />
           </Pressable>
 
           <Pressable
@@ -227,15 +207,14 @@ export const ContentScreen = (props) => {
                 : fontSize === '2'
                   ? '3' 
                   : '1';
-                  console.log(fs);
               setFontSize(fs);
             }}
             height={48}
           >
-            <HStack pt={10}>
-              <Text fontSize={16} lineHeight={32} color={fontSize === '1' ? RED : color} fontWeight="bold">A</Text>
-              <Text fontSize={22} lineHeight={32} color={fontSize === '2' ? RED : color} fontWeight="bold">A</Text>
-              <Text fontSize={28} lineHeight={32} color={fontSize === '3' ? RED : color} fontWeight="bold">A</Text>
+            <HStack pt={6}>
+              <Text fontSize={16} lineHeight={32} color={fontSize === '1' ? RED : color} fontWeight="bold" allowFontScaling={false}>A</Text>
+              <Text fontSize={22} lineHeight={32} color={fontSize === '2' ? RED : color} fontWeight="bold" allowFontScaling={false}>A</Text>
+              <Text fontSize={28} lineHeight={32} color={fontSize === '3' ? RED : color} fontWeight="bold" allowFontScaling={false}>A</Text>
             </HStack>
           </Pressable>
           
@@ -252,12 +231,14 @@ export const ContentScreen = (props) => {
             height={48}
           >
               <Text 
+                allowFontScaling={false}
                 fontSize={28} 
                 fontWeight="bold"
                 fontFamily={fontFamily}
                 lineHeight={32} 
                 color={color} 
-                mt={12} ml={12}
+                mt={6} 
+                ml={12}
               >S</Text>
           </Pressable>
 
@@ -275,9 +256,9 @@ export const ContentScreen = (props) => {
 
         </HStack>
 
-        <StatusBar style="auto" />
       
       </Box>
+      </VStack>
     </View>
   )
 }

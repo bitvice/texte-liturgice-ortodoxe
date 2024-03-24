@@ -53,7 +53,6 @@ function App() {
       } finally {
         setAppIsReady(true);
       }
-
     }
 
     SplashScreen.hideAsync();
@@ -76,6 +75,7 @@ function App() {
             fontWeight="bold"
             fontSize="$2xl"
             lineHeight="$3xl"
+            allowFontScaling={false}
           >Texte Liturgice Ortodoxe</Text>
           <Spinner 
             size={40}
@@ -85,6 +85,7 @@ function App() {
             color={color}
             fontSize="$xl"
             lineHeight="$2xl"
+            allowFontScaling={false}
           >Se încarcă rugăciunile ...</Text>
         </VStack>
       </GluestackUIProvider>

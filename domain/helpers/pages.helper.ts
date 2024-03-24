@@ -15,7 +15,7 @@ export const preparePages = async (category: string, categoryId: number) => {
     const lastUpdate = parseInt( await asyncStorage.getItem(`${category}_last_update`));
     const daysBetween = Math.floor((nowTime - lastUpdate) / (1000 * 60 * 60 * 24));
     
-    if (daysBetween < 3) {
+    if (daysBetween < 7) {
       return;
     }
     

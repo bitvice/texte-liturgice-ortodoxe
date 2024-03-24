@@ -6,10 +6,14 @@ import { CommonHeader } from '../common/CommonHeader';
 import { useEffect, useMemo, useState } from 'react';
 import { getPageChildren } from '../../domain/helpers/pages.helper';
 import { CommonListSection } from '../common/CommonListSection';
+import useAsyncSetting from 'domain/hooks/setting.hook';
+import { ScrollView } from '@gluestack-ui/themed';
+import { useWindowDimensions } from 'react-native';
 
 export const ParticulareScreen = ({ navigation }: { navigation: StackNavigationProp<any> }) => {
+  const { height } = useWindowDimensions();
   const [data, setData] = useState([]);
-
+  const [ theme ] = useAsyncSetting( 'theme' );
 
   useEffect(() => {
     const prepare  = async() => {
@@ -30,16 +34,23 @@ export const ParticulareScreen = ({ navigation }: { navigation: StackNavigationP
 
   return (
     <CommonView>
+      <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
       <CommonHeader title='Rugăciuni particulare' navigation={navigation} backLink="home" />
+
+      <ScrollView
+        width="$full"
+        height={height - 75}
+      >
+
         <VStack
           mt="$5"
           space="4xl"
-        >
+          >
           {data.map(item => (
             <CommonListSection item={item} navigation={navigation} key={item.id} />
-          ))}
+            ))}
         </VStack>
-      <StatusBar style="auto" />
+      </ScrollView>
     </CommonView>
   );
 }

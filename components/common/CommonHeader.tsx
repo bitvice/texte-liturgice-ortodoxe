@@ -71,6 +71,7 @@ export const CommonHeader: FC<ICommonTitleProps> = ({
         color={color}
         fontFamily="Besley_700Bold"
         fontSize={16}
+        allowFontScaling={false}
       >
         {isEmpty(title) ? ' ' : title}
       </Text>

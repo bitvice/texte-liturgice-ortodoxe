@@ -1,14 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { HomeCard } from '../cards/HomeCard';
-import { Avatar, HStack, useColorMode } from '@gluestack-ui/themed';
+import { HStack } from '@gluestack-ui/themed';
 import { Text, Box, VStack } from "@gluestack-ui/themed"
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import useAsyncSetting from '../../domain/hooks/setting.hook';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { CommonHeader } from '../common/CommonHeader';
-import { AvatarImage } from '@gluestack-ui/themed';
-import { Pressable } from '@gluestack-ui/themed';
 
 const imgParticulare = require('../../assets/particulare.jpg');
 const imgBisericesti = require('../../assets/bisericesti.webp');
@@ -36,6 +34,11 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
     ? '$textLight0'
     : '$textDark950'
   ), [tloTheme, route]);
+  const red = useMemo(() => (
+    tloTheme === 'dark' 
+    ? '#ff9124'
+    : '#e20000'
+  ), [tloTheme, route]);
 
   const renderTitleBox = () => (
     <Box style={styles.homeContainer} mb={20}>
@@ -44,10 +47,11 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
         lineHeight={20} 
         fontSize={16}
         fontFamily="Besley_900Black"
+        allowFontScaling={false}
       >Texte Liturgice Ortodoxe</Text>
-      <Text color={color} lineHeight={21} fontSize={14} fontFamily="Besley_400Regular" mb="$4">de la teologie.net</Text>            
-      <Text color="$red600" lineHeight={18} fontSize={12} fontFamily="Besley_400Regular">Cu grija şi binecuvântarea </Text>            
-      <Text color="$red600" lineHeight={18} fontSize={12}  fontFamily="Besley_700Bold">episcopului Petru Pruteanu</Text>            
+      <Text color={color} lineHeight={21} fontSize={14} fontFamily="Besley_400Regular" mb="$4" allowFontScaling={false}>de la teologie.net</Text>            
+      <Text color={red} lineHeight={18} fontSize={12} fontFamily="Besley_400Regular" allowFontScaling={false}>Cu grija şi binecuvântarea </Text>            
+      <Text color={red} lineHeight={18} fontSize={12}  fontFamily="Besley_700Bold" allowFontScaling={false}>episcopului Petru Pruteanu</Text>            
     </Box>
   )
 

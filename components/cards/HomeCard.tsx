@@ -71,6 +71,7 @@ export const HomeCard: FC<IHomeCardProps> = ({
                   textShadowRadius={2}
                   textShadowColor="#000000"
                   mb="$2"
+                  allowFontScaling={false}
                   >
                     Pentru {data.title}
                 </Text>            
