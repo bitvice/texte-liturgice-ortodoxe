@@ -1,11 +1,10 @@
 import {config} from './config/gluestack-ui.config';
-import { Card, GluestackUIProvider, Heading, Spinner, Text, VStack } from '@gluestack-ui/themed';
+import { GluestackUIProvider, Spinner, Text, VStack } from '@gluestack-ui/themed';
 import { ScreensRouter } from './components/screens/ScreensRouter';
 import * as SplashScreen from 'expo-splash-screen';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { preparePages } from './domain/helpers/pages.helper';
-import asyncStorage from '@react-native-async-storage/async-storage';
-import * as besleyExpoFont from '@expo-google-fonts/besley';
+import * as playfairExpoFont from '@expo-google-fonts/playfair-display';
 import useAsyncSetting from './domain/hooks/setting.hook';
 
 // Keep the splash screen visible while we fetch resources
@@ -14,17 +13,21 @@ SplashScreen.preventAutoHideAsync();
 function App() {
 
   const {
-    Besley_400Regular,
-    Besley_500Medium,
-    Besley_700Bold,
-    Besley_900Black
-  } = besleyExpoFont;
-
-  let [besleyLoaded] = besleyExpoFont.useFonts({
-    Besley_400Regular,
-    Besley_500Medium,
-    Besley_700Bold,
-    Besley_900Black
+    PlayfairDisplay_400Regular,
+    PlayfairDisplay_500Medium,
+    PlayfairDisplay_600SemiBold,
+    PlayfairDisplay_700Bold,
+    PlayfairDisplay_800ExtraBold,
+    PlayfairDisplay_900Black
+  } = playfairExpoFont;
+ 
+  let [playfairLoaded] = playfairExpoFont.useFonts({
+    PlayfairDisplay_400Regular,
+    PlayfairDisplay_500Medium,
+    PlayfairDisplay_600SemiBold,
+    PlayfairDisplay_700Bold,
+    PlayfairDisplay_800ExtraBold,
+    PlayfairDisplay_900Black
   });   
 
   const [appIsReady, setAppIsReady] = useState( false );
@@ -59,7 +62,7 @@ function App() {
     prepare();
   }, []);  
 
-  if (!appIsReady || !besleyLoaded) {
+  if (!appIsReady || !playfairLoaded) {
     return (
       <GluestackUIProvider config={config}>
         <VStack
@@ -86,7 +89,7 @@ function App() {
             fontSize="$xl"
             lineHeight="$2xl"
             allowFontScaling={false}
-          >Se încarcă rugăciunile ...</Text>
+          >Se încarcă textele ...</Text>
         </VStack>
       </GluestackUIProvider>
     )

@@ -16,7 +16,7 @@ export const BisericestiScreen = ({ navigation }: { navigation: StackNavigationP
   const creditsColor = useMemo(() => (
     theme === 'dark'
       ? '#ff9124'
-      : '$primary700'
+      : '#e20000'
   ), [ theme ])
 
   useEffect(() => {
@@ -51,7 +51,14 @@ export const BisericestiScreen = ({ navigation }: { navigation: StackNavigationP
           mt={0}
           space="4xl"
           >
-          <Text allowFontScaling={false} lineHeight={18} fontSize={12} fontFamily="Besley_400Regular" textAlign="center" color={creditsColor} allowFontScaling={false}>
+          <Text 
+            allowFontScaling={false} 
+            lineHeight={18} 
+            fontSize={12} 
+            fontFamily="PlayfairDisplay_400Regular" 
+            textAlign="center" 
+            color={creditsColor}
+          >
             editate de către episcopul Petru Pruteanu
           </Text>
           {data.map(item => (

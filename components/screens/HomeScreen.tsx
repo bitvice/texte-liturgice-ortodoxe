@@ -21,8 +21,8 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
 
   const bgColor = useMemo(() => (
     tloTheme === 'dark' 
-      ? '$backgroundDark950'
-      : '$backgroundLight100'
+      ? '#0B1215'
+      : '#FAF9F6'
   ), [tloTheme, route]);
   const cardBgColor = useMemo(() => (
     tloTheme === 'dark' 
@@ -46,12 +46,12 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
         color={color} 
         lineHeight={20} 
         fontSize={16}
-        fontFamily="Besley_900Black"
+        fontFamily="PlayfairDisplay_900Black"
         allowFontScaling={false}
       >Texte Liturgice Ortodoxe</Text>
-      <Text color={color} lineHeight={21} fontSize={14} fontFamily="Besley_400Regular" mb="$4" allowFontScaling={false}>de la teologie.net</Text>            
-      <Text color={red} lineHeight={18} fontSize={12} fontFamily="Besley_400Regular" allowFontScaling={false}>Cu grija şi binecuvântarea </Text>            
-      <Text color={red} lineHeight={18} fontSize={12}  fontFamily="Besley_700Bold" allowFontScaling={false}>episcopului Petru Pruteanu</Text>            
+      <Text color={color} lineHeight={21} fontSize={14} fontFamily="PlayfairDisplay_400Regular" mb="$4" allowFontScaling={false}>de la teologie.net</Text>            
+      <Text color={red} lineHeight={18} fontSize={12} fontFamily="PlayfairDisplay_400Regular" allowFontScaling={false}>Cu grija şi binecuvântarea </Text>            
+      <Text color={red} lineHeight={18} fontSize={12}  fontFamily="PlayfairDisplay_700Bold" allowFontScaling={false}>episcopului Petru Pruteanu</Text>            
     </Box>
   )
 
@@ -108,7 +108,7 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
                   lineHeight={20} 
                   fontSize={16} 
                   opacity={.7}
-                  fontFamily="Besley_400Regular" 
+                  fontFamily="PlayfairDisplay_400Regular" 
                   textAlign="left"
                   textShadowOffset={{
                     width: 1,
@@ -174,7 +174,7 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
                   lineHeight={20} 
                   fontSize={16} 
                   opacity={.7}
-                  fontFamily="Besley_400Regular" 
+                  fontFamily="PlayfairDisplay_400Regular" 
                   textAlign="right"
                   textShadowOffset={{
                     width: 1,
@@ -195,7 +195,7 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
             navigation={navigation}
             data = {{
               screen: 'particulare',
-              title: 'credincioșii laici'
+              title: 'Rugăciuni Particulare'
             }}
           />
           <HomeCard 
@@ -203,7 +203,7 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
             navigation={navigation}
             data = {{
               screen: 'bisericesti',
-              title: 'clerici și strană'
+              title: 'Slujbe Bisericești'
             }}
           />
         </VStack>

@@ -1226,6 +1226,11 @@
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/lusitana/-/lusitana-0.2.3.tgz#c7e6320bae223ba1278ae9e058fcc7eb8011f7c8"
   integrity sha512-G9L7hEnlXUktlrPtatLMRZSCq4y5HWRulY1vcirspCkbJXW/P4UMR7aJlZ+hFJFIuuKyqhuCxpxdP9HlFcfhLg==
 
+"@expo-google-fonts/playfair-display@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/playfair-display/-/playfair-display-0.2.3.tgz#892805793743fc5d110a39d31442ae269d43de47"
+  integrity sha512-J4H/k29XpbM7WDfC/rsJk9qOt/mmKDLFi4UFWxZxmleQoMp8KYRJhAFlESxRQeecYdp0QNcYpDlTzjs8tHddvg==
+
 "@expo/bunyan@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@expo/bunyan/-/bunyan-4.0.0.tgz#be0c1de943c7987a9fbd309ea0b1acd605890c7b"

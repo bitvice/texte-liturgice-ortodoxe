@@ -62,7 +62,7 @@ export const HomeCard: FC<IHomeCardProps> = ({
                   lineHeight={18}
                   fontSize={16} 
                   // opacity={.7}
-                  fontFamily="Besley_900Black" 
+                  fontFamily="PlayfairDisplay_900Black" 
                   textAlign="center"
                   textShadowOffset={{
                     width: 1,
@@ -73,7 +73,7 @@ export const HomeCard: FC<IHomeCardProps> = ({
                   mb="$2"
                   allowFontScaling={false}
                   >
-                    Pentru {data.title}
+                    {data.title}
                 </Text>            
               </VStack>
             </ImageBackground>            

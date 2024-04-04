@@ -39,7 +39,7 @@ export const ContentScreen = (props) => {
     return fontStyle === 'serif' 
       ? isSerif 
         ? 'serif'
-        : 'Besley_400Regular'
+        : 'PlayfairDisplay_400Regular'
       : '';
   }, [fontStyle, isSerif]);
   
@@ -133,7 +133,7 @@ export const ContentScreen = (props) => {
       id="WrapperContainer" 
       width="$full"
       height="$full"
-      backgroundColor={theme === 'dark' ? '$backgroundDark950' : '$backgroundLight100'}
+      backgroundColor={theme === 'dark' ? '#0B1215' : '#FAF9F6'}
     >
       <VStack
         height={ height - 25 }

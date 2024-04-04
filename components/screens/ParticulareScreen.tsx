@@ -3,10 +3,10 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { CommonView } from '../common/CommonView';
 import { VStack } from '@gluestack-ui/themed';
 import { CommonHeader } from '../common/CommonHeader';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getPageChildren } from '../../domain/helpers/pages.helper';
 import { CommonListSection } from '../common/CommonListSection';
-import useAsyncSetting from 'domain/hooks/setting.hook';
+import useAsyncSetting from '../../domain/hooks/setting.hook';
 import { ScrollView } from '@gluestack-ui/themed';
 import { useWindowDimensions } from 'react-native';
 

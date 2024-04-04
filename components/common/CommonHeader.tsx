@@ -30,8 +30,8 @@ export const CommonHeader: FC<ICommonTitleProps> = ({
   const [ tloTheme, setTloTheme ] = useAsyncSetting( 'theme' );
   const bgColor = useMemo(() => (
     tloTheme === 'dark' 
-      ? '$backgroundDark950'
-      : '$backgroundLight100'
+      ? '#0B1215'
+      : '#FAF9F6'
   ), [tloTheme]);
   const color = useMemo(() => (
     tloTheme === 'dark' 
@@ -69,7 +69,7 @@ export const CommonHeader: FC<ICommonTitleProps> = ({
 
       <Text 
         color={color}
-        fontFamily="Besley_700Bold"
+        fontFamily="PlayfairDisplay_700Bold"
         fontSize={16}
         allowFontScaling={false}
       >

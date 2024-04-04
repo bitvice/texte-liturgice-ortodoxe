@@ -13,7 +13,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
 
   const cardBg = useMemo(() => (
     theme === 'dark' 
-    ? '$backgroundDark900'
+    ? '#101720'
     : '$backgroundLight0'
   ), [ theme ])
   const color = useMemo(() => (
@@ -56,7 +56,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
                         <Text
                           size="sm"
                           color={cardColor}
-                          fontFamily="Besley_700Bold"
+                          fontFamily="PlayfairDisplay_700Bold"
                           allowFontScaling={false}
                         >
                           {child.title}
@@ -112,7 +112,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
                   ></Icon>
                   <Text
                     color={btnColor}
-                    fontFamily="Besley_700Bold"
+                    fontFamily="PlayfairDisplay_400Regular"
                     fontSize={14}
                     allowFontScaling={false}
                   >
@@ -134,7 +134,7 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
       <Text 
         mx="$4"
         size="md" 
-        fontFamily="Besley_700Bold"
+        fontFamily="PlayfairDisplay_700Bold"
         color={color}
         allowFontScaling={false}
       >

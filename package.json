@@ -13,6 +13,7 @@
     "@expo-google-fonts/besley": "^0.2.3",
     "@expo-google-fonts/gilda-display": "^0.2.3",
     "@expo-google-fonts/lusitana": "^0.2.3",
+    "@expo-google-fonts/playfair-display": "^0.2.3",
     "@expo/webpack-config": "~19.0.1",
     "@gluestack-style/react": "^1.0.48",
     "@gluestack-ui/config": "^1.1.2",

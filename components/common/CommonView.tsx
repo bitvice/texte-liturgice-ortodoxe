@@ -6,8 +6,8 @@ export const CommonView: FC<PropsWithChildren> = ({children}) => {
   const [ tloTheme ] = useAsyncSetting( 'theme' );
   const bgColor = useMemo(() => (
     tloTheme === 'dark' 
-      ? '$backgroundDark950'
-      : '$backgroundLight100'
+      ? '#0B1215'
+      : '#FAF9F6'
   ), [tloTheme]);
   const color = useMemo(() => (
     tloTheme === 'dark' 

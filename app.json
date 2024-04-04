@@ -2,25 +2,15 @@
   "expo": {
     "name": "Texte Liturgice Ortodoxe",
     "slug": "texte-liturgice-ortodoxe",
-    "version": "3.1.0",
+    "version": "3.1.1",
     "orientation": "",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#0B1215"
     },
-    "plugins": [
-      [
-        "expo-font",
-        {
-          "fonts": [
-            "./assets/fonts/Besley-VariableFont_wght.ttf"
-          ]
-        }
-      ]
-    ],
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -28,10 +18,10 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 6,
+      "versionCode": 7,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#0B1215"
       },
       "package": "net.teologie.texteliturgiceortodoxe"
     },
