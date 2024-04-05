@@ -242,7 +242,7 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
       </VStack>
       )}
 
-      <StatusBar style="auto" />
+      <StatusBar style={tloTheme === 'dark' ? 'light' : 'dark'} />
     </View>      
   );
 }

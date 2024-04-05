@@ -136,10 +136,10 @@ export const ContentScreen = (props) => {
       backgroundColor={theme === 'dark' ? '#0B1215' : '#FAF9F6'}
     >
       <VStack
-        height={ height - 25 }
-        marginTop={25}
+        height={ height }
+        marginTop={30}
         marginLeft={0}
-        marginBottom={25}
+        marginBottom={0}
         marginRight={10}
         justifyContent="space-between"
         alignItems="center"

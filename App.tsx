@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { preparePages } from './domain/helpers/pages.helper';
 import * as playfairExpoFont from '@expo-google-fonts/playfair-display';
 import useAsyncSetting from './domain/hooks/setting.hook';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -46,7 +47,7 @@ function App() {
   useEffect(() => {
     async function prepare() {
       try {
-        // await asyncStorage.clear();
+        await AsyncStorage.clear();
 
         await preparePages( 'rugaciuni', 2 );
         await preparePages( 'slujbe', 3 );
