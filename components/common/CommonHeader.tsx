@@ -54,10 +54,10 @@ export const CommonHeader: FC<ICommonTitleProps> = ({
 
         <Pressable
           onPress={() => {
-            console.log(navigation.getState());
+            // console.log(navigation.getState());
             const currentRoutes = navigation.getState().routes;
             const backRoute = currentRoutes[currentRoutes.length - 2];
-            console.log(backRoute);
+            // console.log(backRoute);
             navigation.navigate(backRoute.name, {n: Math.random()})
           }}
           width={48}

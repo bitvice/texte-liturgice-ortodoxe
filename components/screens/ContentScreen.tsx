@@ -119,9 +119,11 @@ export const ContentScreen = (props) => {
 
   useEffect(() => {
     const prepare = async () => {
+      // console.log('props.route.params.pageId', props.route.params.pageId);
       const contentKey = `page_${props.route.params.pageId}_data`;
       const rawData = await asyncStorage.getItem( contentKey );
       const pageData = JSON.parse( rawData );
+      // console.log('rawData', rawData);
 
       setHtml( pageData?.content || '<h1>Loading ... </h1>' );
     }

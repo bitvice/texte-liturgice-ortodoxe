@@ -28,6 +28,8 @@ export const preparePages = async (category: string, categoryId: number) => {
     const response = await fetch(`https://texteliturgice.bitvice.ro/wp-json/wp/v2/pages?categories=${categoryId}&per_page=100`);
     const pages = await response.json();
 
+    // console.log('pages count', pages.length);
+
     const rawModifiedDates = await asyncStorage.getItem(`${category}_modified_dates`);
     const rawStructure = await asyncStorage.getItem(`${category}_pages_struct`);
     const pagesModifiedDates: Record<string, number> = isEmpty(rawModifiedDates) ? {} : JSON.parse(rawModifiedDates);

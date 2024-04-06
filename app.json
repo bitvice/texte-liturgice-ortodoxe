@@ -2,7 +2,7 @@
   "expo": {
     "name": "Texte Liturgice Ortodoxe",
     "slug": "texte-liturgice-ortodoxe",
-    "version": "3.1.2",
+    "version": "3.1.3",
     "orientation": "",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
@@ -18,7 +18,7 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 8,
+      "versionCode": 9,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0B1215"
