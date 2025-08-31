@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { 
+import {
   Platform,
-  useWindowDimensions 
+  useWindowDimensions
 } from 'react-native';
 import asyncStorage from '@react-native-async-storage/async-storage';
 
@@ -22,10 +22,10 @@ import { Text } from '@gluestack-ui/themed';
 
 export const ContentScreen = (props) => {
   const { width, height } = useWindowDimensions();
-  const [ html, setHtml ] = useState(`<div style="text-align: center; padding: 4rem 0;">Se incarca ...<br/></div>`);
-  const [ theme, setTloTheme ] = useAsyncSetting( 'theme' );  
-  const [ fontSize, setFontSize ] = useAsyncSetting( 'fontSize' );  
-  const [ fontStyle, setFontStyle ] = useAsyncSetting( 'fontStyle' );  
+  const [html, setHtml] = useState(`<div style="text-align: center; padding: 4rem 0;">Se incarca ...<br/></div>`);
+  const [theme, setTloTheme] = useAsyncSetting('theme');
+  const [fontSize, setFontSize] = useAsyncSetting('fontSize');
+  const [fontStyle, setFontStyle] = useAsyncSetting('fontStyle');
   const fontUrl = Platform.select({
     ios: "Besley-VariableFont_wght.ttf",
     android: "file:///android_asset/fonts/Besley-VariableFont_wght.ttf",
@@ -34,15 +34,15 @@ export const ContentScreen = (props) => {
     ios: false,
     android: true
   });
-  const RED = useMemo(() => theme === 'dark' ? '#ff9124' : '#e20000', [theme]);
+  const RED = useMemo(() => theme === 'dark' ? '#E63946' : '#e20000', [theme]);
   const fontFamily = useMemo(() => {
-    return fontStyle === 'serif' 
-      ? isSerif 
+    return fontStyle === 'serif'
+      ? isSerif
         ? 'serif'
         : 'PlayfairDisplay_400Regular'
       : '';
   }, [fontStyle, isSerif]);
-  
+
   const style = useMemo(() => {
     return `<style>
       @font-face {
@@ -50,11 +50,11 @@ export const ContentScreen = (props) => {
         src: url('${fontUrl}') format('truetype')
       }
       html, body {
-        font-size: ${fontSize === '1' 
-          ? 12
-          : fontSize === '2' 
-            ? 14
-            : 18}px;
+        font-size: ${fontSize === '1'
+        ? 12
+        : fontSize === '2'
+          ? 14
+          : 18}px;
         font-family: ${fontFamily};
         background-color: ${theme === 'dark' ? '#000' : '#f5f5f5'};
         color: ${theme === 'dark' ? '#fff' : '#000'};
@@ -97,48 +97,48 @@ export const ContentScreen = (props) => {
         color: ${RED};
       }
     </style>`;
-  }, [ theme, fontSize, fontFamily]);
+  }, [theme, fontSize, fontFamily]);
 
   const bgColor = useMemo(() => (
-    theme === 'dark' 
+    theme === 'dark'
       ? '$backgroundDark900'
       : '$backgroundLight50'
   ), [theme]);
   const borderColor = useMemo(() => (
-    theme === 'dark' 
+    theme === 'dark'
       ? '$backgroundDark700'
       : '$backgroundLight200'
   ), [theme]);
   const color = useMemo(() => (
-    theme === 'dark' 
-    ? '$textLight0'
-    : '$textDark950'
+    theme === 'dark'
+      ? '$textLight0'
+      : '$textDark950'
   ), [theme]);
 
-  const [ pending, setPending ] = useState( false );
+  const [pending, setPending] = useState(false);
 
   useEffect(() => {
     const prepare = async () => {
       // console.log('props.route.params.pageId', props.route.params.pageId);
       const contentKey = `page_${props.route.params.pageId}_data`;
-      const rawData = await asyncStorage.getItem( contentKey );
-      const pageData = JSON.parse( rawData );
+      const rawData = await asyncStorage.getItem(contentKey);
+      const pageData = JSON.parse(rawData);
       // console.log('rawData', rawData);
 
-      setHtml( pageData?.content || '<h1>Loading ... </h1>' );
+      setHtml(pageData?.content || '<h1>Loading ... </h1>');
     }
     prepare();
   }, [])
 
   return (
-    <View 
-      id="WrapperContainer" 
+    <View
+      id="WrapperContainer"
       width="$full"
       height="$full"
       backgroundColor={theme === 'dark' ? '#0B1215' : '#FAF9F6'}
     >
       <VStack
-        height={ height }
+        height={height}
         marginTop={30}
         marginLeft={0}
         marginBottom={0}
@@ -151,10 +151,10 @@ export const ContentScreen = (props) => {
         {!pending && (
           <WebView
             flex={1}
-          aria-label="conținutul paginii"
-          textZoom={100}
-          source={{ 
-            html: `<!doctype html>
+            aria-label="conținutul paginii"
+            textZoom={100}
+            source={{
+              html: `<!doctype html>
             <html>
               <head>
                 <meta charset="UTF-8">
@@ -165,101 +165,101 @@ export const ContentScreen = (props) => {
                 ${html}
               </body>
             </html>`,
-            baseUrl: 'content' 
-          }}
-          style={{
-            width,
-          }}
-          originWhitelist={["*"]}
+              baseUrl: 'content'
+            }}
+            style={{
+              width,
+            }}
+            originWhitelist={["*"]}
           />
         )}
 
-      <Box 
-        height={50} 
-        width={width} 
-        backgroundColor={bgColor}
-        borderTopWidth={1}
-        borderColor={borderColor}
-        shadowColor={borderColor}
-      >
-
-        <HStack
-          pl={0}
-          pr={0}
-          justifyContent="space-between"
+        <Box
+          height={50}
+          width={width}
+          backgroundColor={bgColor}
+          borderTopWidth={1}
+          borderColor={borderColor}
+          shadowColor={borderColor}
         >
-          <Pressable
-            aria-label="înapoi"
-            onPress={() => {
-              const currentRoutes = props.navigation.getState().routes;
-              const backRoute = currentRoutes[currentRoutes.length - 2];
-              props.navigation.navigate(backRoute.name, {n: Math.random()})
-            }}
-            width={48}
-            height={48}
-          >
-            <ChevronLeftIcon color={color} size="xl" mt={10} ml={12}  />
-          </Pressable>
 
-          <Pressable
-            aria-label="mărimea fontului"
-            onPress={() => {
-              const fs = fontSize === '1' 
-                ? '2' 
-                : fontSize === '2'
-                  ? '3' 
-                  : '1';
-              setFontSize(fs);
-            }}
-            height={48}
+          <HStack
+            pl={0}
+            pr={0}
+            justifyContent="space-between"
           >
-            <HStack pt={6}>
-              <Text fontSize={16} lineHeight={32} color={fontSize === '1' ? RED : color} fontWeight="bold" allowFontScaling={false}>A</Text>
-              <Text fontSize={22} lineHeight={32} color={fontSize === '2' ? RED : color} fontWeight="bold" allowFontScaling={false}>A</Text>
-              <Text fontSize={28} lineHeight={32} color={fontSize === '3' ? RED : color} fontWeight="bold" allowFontScaling={false}>A</Text>
-            </HStack>
-          </Pressable>
-          
-          <Pressable
-            aria-label="stil de scris"
-            onPress={() => {
-              // setPending(true);
-              setFontStyle(fontStyle === 'serif' ? 'sans-serif' : 'serif');
-              // setTimeout(() => {
-              //   setPending(false);
-              // }, 1000);
-            }}
-            width={48}
-            height={48}
-          >
-              <Text 
+            <Pressable
+              aria-label="înapoi"
+              onPress={() => {
+                const currentRoutes = props.navigation.getState().routes;
+                const backRoute = currentRoutes[currentRoutes.length - 2];
+                props.navigation.navigate(backRoute.name, { n: Math.random() })
+              }}
+              width={48}
+              height={48}
+            >
+              <ChevronLeftIcon color={color} size="xl" mt={10} ml={12} />
+            </Pressable>
+
+            <Pressable
+              aria-label="mărimea fontului"
+              onPress={() => {
+                const fs = fontSize === '1'
+                  ? '2'
+                  : fontSize === '2'
+                    ? '3'
+                    : '1';
+                setFontSize(fs);
+              }}
+              height={48}
+            >
+              <HStack pt={6}>
+                <Text fontSize={16} lineHeight={32} color={fontSize === '1' ? RED : color} fontWeight="bold" allowFontScaling={false}>A</Text>
+                <Text fontSize={22} lineHeight={32} color={fontSize === '2' ? RED : color} fontWeight="bold" allowFontScaling={false}>A</Text>
+                <Text fontSize={28} lineHeight={32} color={fontSize === '3' ? RED : color} fontWeight="bold" allowFontScaling={false}>A</Text>
+              </HStack>
+            </Pressable>
+
+            <Pressable
+              aria-label="stil de scris"
+              onPress={() => {
+                // setPending(true);
+                setFontStyle(fontStyle === 'serif' ? 'sans-serif' : 'serif');
+                // setTimeout(() => {
+                //   setPending(false);
+                // }, 1000);
+              }}
+              width={48}
+              height={48}
+            >
+              <Text
                 allowFontScaling={false}
-                fontSize={28} 
+                fontSize={28}
                 fontWeight="bold"
                 fontFamily={fontFamily}
-                lineHeight={32} 
-                color={color} 
-                mt={6} 
+                lineHeight={32}
+                color={color}
+                mt={6}
                 ml={12}
               >S</Text>
-          </Pressable>
+            </Pressable>
 
-          <Pressable
-            aria-label="tema"
-            onPress={() => {
-              setTloTheme(theme === 'light' ? 'dark' : 'light');            
-            }}
-            width={48}
-            height={48}
-          >
-            {theme === 'dark' && <SunIcon color={color} size="xl" mt={12} ml={12} />}
-            {theme === 'light' && <MoonIcon color={color} size="xl" mt={12} ml={12} />}
-          </Pressable>
+            <Pressable
+              aria-label="tema"
+              onPress={() => {
+                setTloTheme(theme === 'light' ? 'dark' : 'light');
+              }}
+              width={48}
+              height={48}
+            >
+              {theme === 'dark' && <SunIcon color={color} size="xl" mt={12} ml={12} />}
+              {theme === 'light' && <MoonIcon color={color} size="xl" mt={12} ml={12} />}
+            </Pressable>
 
-        </HStack>
+          </HStack>
 
-      
-      </Box>
+
+        </Box>
       </VStack>
     </View>
   )

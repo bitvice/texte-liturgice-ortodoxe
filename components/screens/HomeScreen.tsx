@@ -17,51 +17,51 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
     return width > height;
   }, [width, height])
 
-  const [ tloTheme ] = useAsyncSetting( 'theme' );
+  const [tloTheme] = useAsyncSetting('theme');
 
   const bgColor = useMemo(() => (
-    tloTheme === 'dark' 
+    tloTheme === 'dark'
       ? '#0B1215'
       : '#FAF9F6'
   ), [tloTheme, route]);
   const cardBgColor = useMemo(() => (
-    tloTheme === 'dark' 
+    tloTheme === 'dark'
       ? '$backgroundDark900'
       : '$backgroundLight0'
   ), [tloTheme, route]);
   const color = useMemo(() => (
-    tloTheme === 'dark' 
-    ? '$textLight0'
-    : '$textDark950'
+    tloTheme === 'dark'
+      ? '$textLight0'
+      : '$textDark950'
   ), [tloTheme, route]);
   const red = useMemo(() => (
-    tloTheme === 'dark' 
-    ? '#ff9124'
-    : '#e20000'
+    tloTheme === 'dark'
+      ? '#E63946'
+      : '#e20000'
   ), [tloTheme, route]);
 
   const renderTitleBox = () => (
     <Box style={styles.homeContainer} mb={20}>
-      <Text 
-        color={color} 
-        lineHeight={20} 
+      <Text
+        color={color}
+        lineHeight={20}
         fontSize={16}
         fontFamily="PlayfairDisplay_900Black"
         allowFontScaling={false}
       >Texte Liturgice Ortodoxe</Text>
-      <Text color={color} lineHeight={21} fontSize={14} fontFamily="PlayfairDisplay_400Regular" mb="$4" allowFontScaling={false}>de la teologie.net</Text>            
-      <Text color={red} lineHeight={18} fontSize={12} fontFamily="PlayfairDisplay_400Regular" allowFontScaling={false}>Cu grija şi binecuvântarea </Text>            
-      <Text color={red} lineHeight={18} fontSize={12}  fontFamily="PlayfairDisplay_700Bold" allowFontScaling={false}>episcopului Petru Pruteanu</Text>            
+      <Text color={color} lineHeight={21} fontSize={14} fontFamily="PlayfairDisplay_400Regular" mb="$4" allowFontScaling={false}>de la teologie.net</Text>
+      <Text color={red} lineHeight={18} fontSize={12} fontFamily="PlayfairDisplay_400Regular" allowFontScaling={false}>Cu grija şi binecuvântarea </Text>
+      <Text color={red} lineHeight={18} fontSize={12} fontFamily="PlayfairDisplay_700Bold" allowFontScaling={false}>episcopului Petru Pruteanu</Text>
     </Box>
   )
 
   return (
     <View id="WrapperContainer" style={styles.container}>
       {!isLandscape && (
-        <VStack 
-          space="xl" 
-          reversed={false} 
-          style={styles.wrapper} 
+        <VStack
+          space="xl"
+          reversed={false}
+          style={styles.wrapper}
           backgroundColor={bgColor}
         >
           {renderTitleBox()}
@@ -190,18 +190,18 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
             </Pressable>
           </Box> */}
 
-          <HomeCard 
+          <HomeCard
             bg={imgParticulare}
             navigation={navigation}
-            data = {{
+            data={{
               screen: 'particulare',
               title: 'Rugăciuni Particulare'
             }}
           />
-          <HomeCard 
+          <HomeCard
             bg={imgBisericesti}
             navigation={navigation}
-            data = {{
+            data={{
               screen: 'bisericesti',
               title: 'Slujbe Bisericești'
             }}
@@ -210,40 +210,40 @@ export const HomeScreen = ({ navigation, route }: { navigation: StackNavigationP
       )}
 
       {isLandscape && (
-        <VStack 
-          space="md" 
-          style={styles.wrapper} 
+        <VStack
+          space="md"
+          style={styles.wrapper}
           backgroundColor={bgColor}
         >
-        <CommonHeader title='' navigation={navigation} hideBack />
-        {renderTitleBox()}
-        <HStack
-          space="md" 
-          reversed={false} 
-          style={styles.wrapper}
-        >
-          <HomeCard 
-            bg={imgParticulare}
-            navigation={navigation}
-            data = {{
-              screen: 'particulare',
-              title: 'credincioșii laici'
-            }}
+          <CommonHeader title='' navigation={navigation} hideBack />
+          {renderTitleBox()}
+          <HStack
+            space="md"
+            reversed={false}
+            style={styles.wrapper}
+          >
+            <HomeCard
+              bg={imgParticulare}
+              navigation={navigation}
+              data={{
+                screen: 'particulare',
+                title: 'credincioșii laici'
+              }}
             />
-          <HomeCard 
-            bg={imgBisericesti}
-            navigation={navigation}
-            data = {{
-              screen: 'bisericesti',
-              title: 'clerici și strană'
-            }}
+            <HomeCard
+              bg={imgBisericesti}
+              navigation={navigation}
+              data={{
+                screen: 'bisericesti',
+                title: 'clerici și strană'
+              }}
             />
           </HStack>
-      </VStack>
+        </VStack>
       )}
 
       <StatusBar style={tloTheme === 'dark' ? 'light' : 'dark'} />
-    </View>      
+    </View>
   );
 }
 
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column',    
+    flexDirection: 'column',
     height: '100%'
   },
   wrapper: {
@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     justifyContent: 'center',
     borderRadius: 16,
-  },  
+  },
   homeContainer: {
     flex: 1 / 3,
     alignItems: 'center',
@@ -274,10 +274,10 @@ const styles = StyleSheet.create({
     gap: 9,
     width: '100%',
     borderRadius: 16
-  },  
+  },
   footerContainer: {
     flex: 1 / 3,
     alignItems: 'center',
     gap: 9,
-  },  
+  },
 });

@@ -9,33 +9,33 @@ import { AccordionContent } from "@gluestack-ui/themed";
 import { Card } from "@gluestack-ui/themed";
 
 export const CommonListSection = ({ item, navigation }: { item: any, navigation: StackNavigationProp<any> }) => {
-  const [ theme ] = useAsyncSetting( 'theme' );
+  const [theme] = useAsyncSetting('theme');
 
   const cardBg = useMemo(() => (
-    theme === 'dark' 
-    ? '#101720'
-    : '$backgroundLight0'
-  ), [ theme ])
+    theme === 'dark'
+      ? '#101720'
+      : '$backgroundLight0'
+  ), [theme])
   const color = useMemo(() => (
-    theme === 'dark' 
-    ? '$textLight0'
-    : '$textDark950'
-  ), [theme]);  
+    theme === 'dark'
+      ? '$textLight0'
+      : '$textDark950'
+  ), [theme]);
   const cardColor = useMemo(() => (
     theme === 'dark'
       ? '$textDark200'
       : '$textDark800'
-  ), [ theme ])
+  ), [theme])
   const cardLinesColor = useMemo(() => (
     theme === 'dark'
       ? '$borderDark800'
       : '$borderLight200'
-  ), [ theme ])
+  ), [theme])
   const btnColor = useMemo(() => (
     theme === 'dark'
-      ? '#ff9124'
+      ? '#E63946'
       : '#e20000'
-  ), [ theme ])
+  ), [theme])
 
   const renderChildren = (data) => {
     if (isNil(data.children)) {
@@ -61,21 +61,21 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
                         >
                           {child.title}
                         </Text>
-                        <AccordionIcon 
-                          as={isExpanded ? ChevronUpIcon : ChevronDownIcon} 
+                        <AccordionIcon
+                          as={isExpanded ? ChevronUpIcon : ChevronDownIcon}
                           ml="$3"
                           size="lg"
-                          color={cardColor} 
+                          color={cardColor}
                         />
                       </>
                     )
                   }}
-                </AccordionTrigger>                
+                </AccordionTrigger>
               </AccordionHeader>
               <AccordionContent>
                 <VStack>
 
-                {renderChildren(child)}
+                  {renderChildren(child)}
                 </VStack>
               </AccordionContent>
             </AccordionItem>
@@ -83,29 +83,29 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
 
           {isNil(child.children) && (
             <Pressable onPress={() => {
-              navigation.navigate( 'content' , {
+              navigation.navigate('content', {
                 screen: 'content',
                 title: 'Content',
                 referer: 'particulare',
                 pageId: child.id
               })
-            }}>            
-            <Box
-              borderBottomWidth="$1"
-              borderColor={cardLinesColor}
-              $base-pl={0}
-              $base-pr={0}
-              $sm-pl="$2"
-              $sm-pr="$2"
-              py="$5"
-            >
+            }}>
+              <Box
+                borderBottomWidth="$1"
+                borderColor={cardLinesColor}
+                $base-pl={0}
+                $base-pr={0}
+                $sm-pl="$2"
+                $sm-pr="$2"
+                py="$5"
+              >
                 <HStack
                   space="md"
                   alignItems="flex-start"
                   pr="$5"
                 >
-                  <Icon 
-                    as={ChevronRightIcon} 
+                  <Icon
+                    as={ChevronRightIcon}
                     size="lg"
                     color={btnColor}
                     minWidth={20}
@@ -119,21 +119,21 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
                     {child.title}
                   </Text>
                 </HStack>
-            </Box>
-          </Pressable>
+              </Box>
+            </Pressable>
           )}
         </Box>
       )
     })
   }
-  
+
   return (
     <VStack
       space="sm"
     >
-      <Text 
+      <Text
         mx="$4"
-        size="md" 
+        size="md"
         fontFamily="PlayfairDisplay_700Bold"
         color={color}
         allowFontScaling={false}
@@ -141,23 +141,23 @@ export const CommonListSection = ({ item, navigation }: { item: any, navigation:
         {item.title}
       </Text>
 
-      <Card 
-          key={item.id} 
-          m={16} 
-          p={0}
-          backgroundColor={cardBg}
+      <Card
+        key={item.id}
+        m={16}
+        p={0}
+        backgroundColor={cardBg}
+      >
+        <Accordion
+          width="100%"
+          size="md"
+          variant="unfilled"
+          type="single"
+          isCollapsible={true}
+          isDisabled={false}
         >
-          <Accordion
-            width="100%"
-            size="md"
-            variant="unfilled"
-            type="single"
-            isCollapsible={true}
-            isDisabled={false}
-          >          
-            {renderChildren(item)}
-          </Accordion>
-        </Card>                
+          {renderChildren(item)}
+        </Accordion>
+      </Card>
     </VStack>
   );
 }
